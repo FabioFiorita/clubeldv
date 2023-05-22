@@ -21,20 +21,24 @@ class OnboardingPage extends StatelessWidget {
             const SizedBox(
               height: 125,
             ),
-            Text(
-              "Clube de Descontos\nLugares do Vale",
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
-              textAlign: TextAlign.center,
+            SelectionArea(
+              child: Text(
+                "Clube de Descontos\nLugares do Vale",
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                textAlign: TextAlign.center,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 48.0, 16.0, 48.0),
-              child: Text(
-                "Estamos felizes em tê-lo conosco. Aqui você encontrará descontos exclusivos de nossos parceiros selecionados em diversos tipos de comida e produtos.\nAproveite e economize com nossas ofertas incríveis.",
-                style: Theme.of(context).textTheme.titleLarge,
-                textAlign: TextAlign.justify,
+              child: SelectionArea(
+                child: Text(
+                  "Estamos felizes em tê-lo conosco. Aqui você encontrará descontos exclusivos de nossos parceiros selecionados em diversos tipos de comida e produtos.\nAproveite e economize com nossas ofertas incríveis.",
+                  style: Theme.of(context).textTheme.titleLarge,
+                  textAlign: TextAlign.justify,
+                ),
               ),
             ),
             Padding(
