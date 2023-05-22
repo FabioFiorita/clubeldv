@@ -7,7 +7,7 @@ class AppRouter {
 
   AppRouter() {
     router = GoRouter(
-      initialLocation: '/',
+      initialLocation: '/home',
       routes: [
         GoRoute(
           path: '/',
