@@ -8,7 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       themeMode: ThemeMode.light,
       routerConfig: AppRouter().router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

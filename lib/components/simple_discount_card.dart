@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SimpleDiscountCard extends StatelessWidget {
   final String title;
@@ -12,7 +13,9 @@ class SimpleDiscountCard extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-        onTap: () {},
+        onTap: () {
+          context.go('/discount/1');
+        },
         child: Row(
           children: [
             const ClipRRect(
