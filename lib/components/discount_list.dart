@@ -1,4 +1,3 @@
-import 'package:clube_ldv/service/discount_service.dart';
 import 'package:flutter/material.dart';
 
 import '../model/discount.dart';
@@ -13,9 +12,9 @@ class DiscountList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        return DiscountCard(
-          discount: DiscountService().getFromId(1),
-        );
+        // return DiscountCard(
+        //   discount: DiscountService().getFromId(1),
+        // );
       },
       itemCount: discounts.length,
     );

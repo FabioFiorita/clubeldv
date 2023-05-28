@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({Key? key}) : super(key: key);
@@ -22,8 +21,7 @@ class HomeAppBar extends StatelessWidget {
           child: TextField(
             //on focus
             onTap: () {
-              (GoRouter.of(context).location == "/search") ? null : context.push('/search');
-
+              //(GoRouter.of(context).location == "/search") ? null : context.push('/search');
             },
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: Theme.of(context).colorScheme.onPrimary,

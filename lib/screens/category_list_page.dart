@@ -1,7 +1,6 @@
 import 'package:clube_ldv/components/category_card.dart';
 import 'package:clube_ldv/components/return_button.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../utils/categories.dart';
 
@@ -13,7 +12,7 @@ class CategoryListPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Categorias"),
-          leading: (context.canPop() == false) ? const ReturnButton() : null,
+          //leading: (context.canPop() == false) ? const ReturnButton() : null,
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),

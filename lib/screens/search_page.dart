@@ -22,7 +22,8 @@ class SearchPage extends StatelessWidget {
                     right: 16.0,
                     bottom: 4.0,
                   ),
-                  child: SimpleDiscountCard(title: "Desconto ${index + 1}"),
+                  child: Text('discount'),
+                  //SimpleDiscountCard(title: "Desconto ${index + 1}"),
                 );
               },
               childCount: 10,

@@ -1,6 +1,5 @@
 import 'package:clube_ldv/model/discount.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class DiscountCard extends StatelessWidget {
   final Discount discount;
@@ -16,7 +15,7 @@ class DiscountCard extends StatelessWidget {
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
           onTap: () {
-            context.push('/discount/${discount.id}');
+            //context.push('/discount/${discount.id}');
           },
           child: Row(
             children: [

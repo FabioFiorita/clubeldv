@@ -1,5 +1,6 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:clube_ldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class OnboardingPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                   onPressed: () {
-                    context.go('/home');
+                    context.replaceRoute(const HomeRoute());
                   },
                   child: Text(
                     "Começar",

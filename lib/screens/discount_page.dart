@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clube_ldv/model/discount.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class DiscountPage extends StatelessWidget {
   final Discount discount;
@@ -23,7 +22,7 @@ class DiscountPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    (context.canPop()) ? context.pop() : context.go('/home');
+                    //(context.canPop()) ? context.pop() : context.go('/home');
                   },
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
@@ -47,7 +46,7 @@ class DiscountPage extends StatelessWidget {
             ),
           ),
           Text(
-            discount.company.name,
+            discount.name,
             style: const TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,

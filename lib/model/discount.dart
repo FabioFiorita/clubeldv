@@ -1,54 +1,27 @@
-import 'company.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Discount {
-  final int id;
-  final String name;
-  final String description;
-  final Company company;
-  // final String image;
-  // final String code;
-  // final String link;
-  // final String category;
-  // final String type;
-  // final String value;
-  // final String expiryDate;
-  // final String status;
-  // final String createdAt;
-  // final String updatedAt;
+part 'discount.freezed.dart';
+part 'discount.g.dart';
 
-  Discount({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.company,
-    // required this.image,
-    // required this.code,
-    // required this.link,
-    // required this.category,
-    // required this.type,
-    // required this.value,
-    // required this.expiryDate,
-    // required this.status,
-    // required this.createdAt,
-    // required this.updatedAt,
-  });
+@Freezed()
+class Discount with _$Discount {
+  const factory Discount({
+    required String id,
+    required String name,
+    required String category,
+    required String description,
+    @JsonKey(fromJson: _sendAtFromJson) required DateTime validFrom,
+    @JsonKey(fromJson: _sendAtFromJson) required DateTime validUntil,
+    String? image,
+    String? link,
+    @JsonKey(fromJson: _sendAtFromJson) required DateTime createdAt,
+    @JsonKey(fromJson: _sendAtFromJson) required DateTime updatedAt,
+  }) = _Discount;
 
-  factory Discount.fromJson(Map<String, dynamic> json) {
-    return Discount(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      company: Company.fromJson(json['company']),
-      // image: json['image'],
-      // code: json['code'],
-      // link: json['link'],
-      // category: json['category'],
-      // type: json['type'],
-      // value: json['value'],
-      // expiryDate: json['expiry_date'],
-      // status: json['status'],
-      // createdAt: json['created_at'],
-      // updatedAt: json['updated_at'],
-    );
-  }
+  factory Discount.fromJson(Map<String, Object?> json) =>
+      _$DiscountFromJson(json);
 }
+
+DateTime _sendAtFromJson(Timestamp timestamp) =>
+    DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch);

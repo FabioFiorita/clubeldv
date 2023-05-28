@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../model/category.dart';
 
@@ -17,7 +16,7 @@ class CategoryCard extends StatelessWidget {
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
           onTap: () {
-            context.push('/category/${category.id}');
+            //context.push('/category/${category.id}');
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
