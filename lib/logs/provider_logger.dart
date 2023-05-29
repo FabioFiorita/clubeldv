@@ -1,7 +1,8 @@
-import 'package:clube_ldv/logs/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 class ProviderLogger extends ProviderObserver {
+  Logger _logger = Logger();
   @override
   void didUpdateProvider(
     ProviderBase<Object?> provider,
@@ -9,7 +10,7 @@ class ProviderLogger extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    logger.d('''
+    _logger.d('''
 {
   "provider": "${provider.name ?? provider.runtimeType}",
   "newValue": "$newValue"

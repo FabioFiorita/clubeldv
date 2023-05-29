@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:clube_ldv/model/company.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'discount.freezed.dart';
@@ -11,6 +12,7 @@ class Discount with _$Discount {
     required String name,
     required String category,
     required String description,
+    required Company company,
     @JsonKey(fromJson: _sendAtFromJson) required DateTime validFrom,
     @JsonKey(fromJson: _sendAtFromJson) required DateTime validUntil,
     String? image,

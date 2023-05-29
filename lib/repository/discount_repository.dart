@@ -1,4 +1,3 @@
-// Create a interface for my repositories with getAll and getById methods
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -19,11 +18,18 @@ class DiscountRepository implements IRepository<Discount> {
   @override
   Future<List<Discount>> getAll() async {
     final List<Discount> discounts = [];
-    await firestore.collectionGroup('discounts').get().then((value) {
-      for (var element in value.docs) {
-        discounts.add(Discount.fromJson(element.data()));
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await firestore.collectionGroup('discounts').get();
+    for (var element in querySnapshot.docs) {
+      final Map<String, dynamic> discountData = element.data();
+      final companyQuerySnapshot = await element.reference.parent.parent?.get();
+      final Map<String, dynamic>? companyData = companyQuerySnapshot?.data();
+      if (companyData != null) {
+        discountData['company'] = companyData;
+        Discount discount = Discount.fromJson(discountData);
+        discounts.add(discount);
       }
-    });
+    }
     return discounts;
   }
 

@@ -8,7 +8,7 @@ class SimpleDiscountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String image = discount.image ?? '';
+    final String image = discount.company.image ?? '';
     return Card(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(24.0)),
