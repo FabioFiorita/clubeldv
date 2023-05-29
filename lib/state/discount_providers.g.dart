@@ -7,7 +7,7 @@ part of 'discount_providers.dart';
 // **************************************************************************
 
 String _$discountByCategoryHash() =>
-    r'ea2d21d9dbbe5c488f6cd00d786dabb1789dc650';
+    r'eb1cab8dd3b1d336100fb37e5453bf1bbdec5cf4';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,14 +30,15 @@ class _SystemHash {
   }
 }
 
-typedef DiscountByCategoryRef = AutoDisposeProviderRef<AsyncValue<dynamic>>;
+typedef DiscountByCategoryRef
+    = AutoDisposeProviderRef<AsyncValue<List<Discount>>>;
 
 /// See also [discountByCategory].
 @ProviderFor(discountByCategory)
 const discountByCategoryProvider = DiscountByCategoryFamily();
 
 /// See also [discountByCategory].
-class DiscountByCategoryFamily extends Family<AsyncValue<dynamic>> {
+class DiscountByCategoryFamily extends Family<AsyncValue<List<Discount>>> {
   /// See also [discountByCategory].
   const DiscountByCategoryFamily();
 
@@ -76,7 +77,7 @@ class DiscountByCategoryFamily extends Family<AsyncValue<dynamic>> {
 
 /// See also [discountByCategory].
 class DiscountByCategoryProvider
-    extends AutoDisposeProvider<AsyncValue<dynamic>> {
+    extends AutoDisposeProvider<AsyncValue<List<Discount>>> {
   /// See also [discountByCategory].
   DiscountByCategoryProvider({
     required this.category,
@@ -127,4 +128,20 @@ final discountsProvider =
 );
 
 typedef _$Discounts = AutoDisposeAsyncNotifier<List<Discount>>;
+String _$starredDiscountHash() => r'ee1cd45e8ef8b2932fd261690d8abb8dcb7c731a';
+
+/// See also [StarredDiscount].
+@ProviderFor(StarredDiscount)
+final starredDiscountProvider =
+    AutoDisposeAsyncNotifierProvider<StarredDiscount, Discount>.internal(
+  StarredDiscount.new,
+  name: r'starredDiscountProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$starredDiscountHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$StarredDiscount = AutoDisposeAsyncNotifier<Discount>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

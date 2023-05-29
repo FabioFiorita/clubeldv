@@ -29,6 +29,6 @@ Map<String, dynamic> _$$_CompanyToJson(_$_Company instance) =>
       'image': instance.image,
       'instagram': instance.instagram,
       'openingHours': instance.openingHours,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': _sendAtToJson(instance.createdAt),
+      'updatedAt': _sendAtToJson(instance.updatedAt),
     };

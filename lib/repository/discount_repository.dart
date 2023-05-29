@@ -19,7 +19,7 @@ class DiscountRepository implements IRepository<Discount> {
   Future<List<Discount>> getAll() async {
     final List<Discount> discounts = [];
     final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collectionGroup('discounts').get();
+        await firestore.collectionGroup('discounts').orderBy('category').get();
     for (var element in querySnapshot.docs) {
       final Map<String, dynamic> discountData = element.data();
       final companyQuerySnapshot = await element.reference.parent.parent?.get();
@@ -31,6 +31,13 @@ class DiscountRepository implements IRepository<Discount> {
       }
     }
     return discounts;
+  }
+
+  Future<Discount> getStarredDiscount() async {
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore.collection('starredDiscount').get();
+    final Map<String, dynamic> discountData = querySnapshot.docs.first.data();
+    final Discount discount = Discount.fromJson(discountData);
+    return discount;
   }
 
   @override

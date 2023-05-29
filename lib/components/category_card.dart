@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../model/category.dart';
+import '../routes/app_router.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -16,24 +18,26 @@ class CategoryCard extends StatelessWidget {
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(24.0)),
           onTap: () {
-            //context.push('/category/${category.id}');
+            context.navigateTo(
+              CategoryDiscountListRoute(
+                category: category,
+              ),
+            );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
+            child: Row(
               children: [
                 Icon(
                   category.icon,
                   color: category.color,
-                  size: 100,
+                  size: 30,
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      category.name,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    category.name,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
               ],

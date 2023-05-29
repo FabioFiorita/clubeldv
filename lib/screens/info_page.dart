@@ -2,12 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clube_ldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
-class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({Key? key}) : super(key: key);
+@RoutePage()
+class InfoPage extends StatelessWidget {
+  const InfoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sobre nós'),
+      ),
       body: Stack(alignment: AlignmentDirectional.topCenter, children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -42,22 +46,6 @@ class OnboardingPage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: SizedBox(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.replaceRoute(const HomeRoute());
-                  },
-                  child: Text(
-                    "Começar",
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-              ),
-            )
           ],
         ),
         const Padding(

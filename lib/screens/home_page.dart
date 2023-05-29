@@ -1,15 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clube_ldv/components/category_card.dart';
-import 'package:clube_ldv/components/home_app_bar.dart';
 import 'package:clube_ldv/components/simple_discount_card.dart';
 import 'package:clube_ldv/screens/error_page.dart';
+import 'package:clube_ldv/screens/info_page.dart';
 import 'package:clube_ldv/screens/loading_page.dart';
 import 'package:clube_ldv/state/discount_providers.dart';
 import 'package:clube_ldv/utils/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/discount_card.dart';
+import '../components/starred_discount_card.dart';
+import '../routes/app_router.dart';
 
 @RoutePage()
 class HomePage extends ConsumerWidget {
@@ -20,13 +21,29 @@ class HomePage extends ConsumerWidget {
     final asyncDiscounts = ref.watch(discountsProvider);
     return asyncDiscounts.when(
         data: (discounts) => Scaffold(
+              appBar: AppBar(
+                title: const Text(
+                  "Lugares do Vale",
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      context.navigateTo(const InfoRoute());
+                    },
+                    icon: const Icon(Icons.info_rounded),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.notifications),
+                  ),
+                ],
+              ),
               body: CustomScrollView(
                 slivers: [
-                  const HomeAppBar(),
-                  SliverToBoxAdapter(
+                  const SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: DiscountCard(discount: discounts[0]),
+                      padding: EdgeInsets.all(16.0),
+                      child: StarredDiscountCard(),
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -42,7 +59,7 @@ class HomePage extends ConsumerWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              //context.push('/categories');
+                              context.pushRoute(const CategoriesRoute());
                             },
                             child: const Text("Ver todas"),
                           ),
@@ -53,10 +70,10 @@ class HomePage extends ConsumerWidget {
                   // Create a Sliver horizontal list
                   SliverToBoxAdapter(
                     child: SizedBox(
-                      height: 200,
+                      height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: categories.length,
+                        itemCount: 6,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -79,7 +96,7 @@ class HomePage extends ConsumerWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              //context.push('/discounts');
+                              context.navigateTo(const DiscountListRoute());
                             },
                             child: const Text("Ver todos"),
                           ),
@@ -101,7 +118,7 @@ class HomePage extends ConsumerWidget {
                           ),
                         );
                       },
-                      childCount: discounts.length,
+                      childCount: (discounts.length > 10) ? 10 : discounts.length,
                     ),
                   )
                 ],
