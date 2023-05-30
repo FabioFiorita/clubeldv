@@ -6,7 +6,7 @@ import '../repository/discount_repository.dart';
 part 'discount_providers.g.dart';
 
 @riverpod
-AsyncValue discountByCategory(DiscountByCategoryRef ref,
+AsyncValue<List<Discount>> discountByCategory(DiscountByCategoryRef ref,
     {required String category}) {
   final asyncDiscounts = ref.watch(discountsProvider);
   return asyncDiscounts.when(
@@ -32,4 +32,27 @@ class Discounts extends _$Discounts {
     final repository = ref.read(discountRepositoryProvider);
     return await repository.getAll();
   }
+}
+
+@riverpod
+class StarredDiscount extends _$StarredDiscount {
+  @override
+  FutureOr<Discount> build() async {
+    return _getStarredDiscount();
+  }
+
+  Future<Discount> _getStarredDiscount() async {
+    final repository = ref.read(discountRepositoryProvider);
+    return await repository.getStarredDiscount();
+  }
+}
+
+@riverpod
+AsyncValue<Discount> discount(DiscountRef ref, {required String id}) {
+  final asyncDiscounts = ref.watch(discountsProvider);
+  return asyncDiscounts.when(
+    data: (discounts) => AsyncData(discounts.firstWhere((discount) => discount.id == id)),
+    loading: () => const AsyncLoading(),
+    error: (error, stack) => AsyncError(error, stack),
+  );
 }

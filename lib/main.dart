@@ -14,7 +14,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await DiscountRepository(FirebaseFirestore.instance).getAll();
   runApp(ProviderScope(observers: [ProviderLogger()],child: MyApp()));
 }
 
