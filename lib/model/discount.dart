@@ -26,4 +26,4 @@ class Discount with _$Discount {
 }
 
 DateTime _sendAtFromJson(Timestamp timestamp) =>
-    DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch);
+    timestamp.toDate();

@@ -21,8 +21,6 @@ class Company with _$Company {
 
   factory Company.fromJson(Map<String, Object?> json) =>
       _$CompanyFromJson(json);
-
 }
 
-DateTime _sendAtFromJson(Timestamp timestamp) =>
-    DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch);
+DateTime _sendAtFromJson(Timestamp timestamp) => timestamp.toDate();
