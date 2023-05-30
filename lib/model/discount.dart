@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'discount.freezed.dart';
 part 'discount.g.dart';
 
-@Freezed()
+@Freezed(toJson: false)
 class Discount with _$Discount {
   const factory Discount({
     required String id,

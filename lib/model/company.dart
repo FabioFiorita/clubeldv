@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'company.freezed.dart';
 part 'company.g.dart';
 
-@Freezed()
+@Freezed(toJson: false)
 class Company with _$Company {
   const factory Company({
     required String id,
@@ -15,8 +15,8 @@ class Company with _$Company {
     required String image,
     required String instagram,
     required String openingHours,
-    @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson) required DateTime createdAt,
-    @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson) required DateTime updatedAt,
+    @JsonKey(fromJson: _sendAtFromJson) required DateTime createdAt,
+    @JsonKey(fromJson: _sendAtFromJson) required DateTime updatedAt,
   }) = _Company;
 
   factory Company.fromJson(Map<String, Object?> json) =>
@@ -26,6 +26,3 @@ class Company with _$Company {
 
 DateTime _sendAtFromJson(Timestamp timestamp) =>
     DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch);
-
-Timestamp _sendAtToJson(DateTime dateTime) =>
-    Timestamp.fromMillisecondsSinceEpoch(dateTime.millisecondsSinceEpoch);

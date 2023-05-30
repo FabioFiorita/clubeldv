@@ -3,6 +3,7 @@ import 'package:clube_ldv/model/company.dart';
 import 'package:clube_ldv/model/discount.dart';
 import 'package:clube_ldv/repository/discount_repository.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -10,7 +11,7 @@ void main() {
     late DiscountRepository discountRepository;
     late FakeFirebaseFirestore mockFirestore;
 
-    setUp(() async {
+    setUp(() {
       mockFirestore = FakeFirebaseFirestore();
       discountRepository = DiscountRepository(mockFirestore);
     });
@@ -81,8 +82,7 @@ void main() {
       expect(discount.company.city, mockDiscount.company.city);
       expect(discount.company.image, mockDiscount.company.image);
       expect(discount.company.instagram, mockDiscount.company.instagram);
-      expect(discount.company.openingHours,
-          mockDiscount.company.openingHours);
+      expect(discount.company.openingHours, mockDiscount.company.openingHours);
       expect(discount.company.createdAt, mockDiscount.company.createdAt);
       expect(discount.company.updatedAt, mockDiscount.company.updatedAt);
       expect(discount.validFrom, mockDiscount.validFrom);
@@ -91,6 +91,28 @@ void main() {
       expect(discount.link, mockDiscount.link);
       expect(discount.createdAt, mockDiscount.createdAt);
       expect(discount.updatedAt, mockDiscount.updatedAt);
+    });
+  });
+
+  group('DiscountRepository provider tests', () {
+    late DiscountRepository discountRepository;
+    late FakeFirebaseFirestore mockFirestore;
+
+    setUp(() {
+      mockFirestore = FakeFirebaseFirestore();
+      discountRepository = DiscountRepository(mockFirestore);
+    });
+
+    test('discountRepositoryProvider should contain discountRepository', () {
+      final container = ProviderContainer(
+        overrides: [
+          discountRepositoryProvider.overrideWithValue(discountRepository),
+        ],
+      );
+
+      final discount = container.read(discountRepositoryProvider);
+
+      expect(discount, discountRepository);
     });
   });
 }

@@ -19,18 +19,3 @@ _$_Discount _$$_DiscountFromJson(Map<String, dynamic> json) => _$_Discount(
       createdAt: _sendAtFromJson(json['createdAt'] as Timestamp),
       updatedAt: _sendAtFromJson(json['updatedAt'] as Timestamp),
     );
-
-Map<String, dynamic> _$$_DiscountToJson(_$_Discount instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'category': instance.category,
-      'description': instance.description,
-      'company': instance.company,
-      'validFrom': instance.validFrom.toIso8601String(),
-      'validUntil': instance.validUntil.toIso8601String(),
-      'image': instance.image,
-      'link': instance.link,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-    };
