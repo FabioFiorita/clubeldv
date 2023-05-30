@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:clube_ldv/logs/provider_logger.dart';
-import 'package:clube_ldv/repository/discount_repository.dart';
 import 'package:clube_ldv/routes/app_router.dart';
 import 'package:clube_ldv/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';

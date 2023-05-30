@@ -24,6 +24,6 @@ class DiscountListTile extends StatelessWidget {
       ),
       title: Text(discount.name),
       subtitle: Text(discount.company.name),
-    );;
+    );
   }
 }

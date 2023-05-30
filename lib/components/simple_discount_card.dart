@@ -12,7 +12,7 @@ class SimpleDiscountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String image = discount.company.image ?? '';
+    final String image = discount.company.image;
     return InkWell(
       borderRadius: BorderRadius.circular(16.0),
       onTap: () => context.navigateTo(

@@ -55,7 +55,7 @@ class CategoryDiscountListPage extends ConsumerWidget {
                         height: 350,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 16.0),
+                        padding: const EdgeInsets.only(top: 16.0),
                         child: Text("Nenhum desconto encontrado", style: Theme.of(context).textTheme.bodyLarge,),
                       ),
                     ],
