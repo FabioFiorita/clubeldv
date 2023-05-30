@@ -16,26 +16,42 @@ class DiscountInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ListTile(
-              leading: Icon(
-                icon,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.6),
+            offset: const Offset(2, 2),
+            blurRadius: 6,
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                leading: Icon(
+                  icon,
+                ),
+                iconColor: Colors.red,
+                title: SelectableText(info),
               ),
-              iconColor: Colors.red,
-              title: Text(info),
-            ),
-            ListTile(
-              leading: Icon(
-                secondaryIcon,
+              ListTile(
+                leading: Icon(
+                  secondaryIcon,
+                ),
+                iconColor: Colors.red,
+                title: SelectableText(secondaryInfo),
               ),
-              iconColor: Colors.red,
-              title: Text(secondaryInfo),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

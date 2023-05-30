@@ -15,9 +15,10 @@ class StarredDiscountCard extends ConsumerWidget {
     final asyncStarredDiscount = ref.watch(starredDiscountProvider);
 
     return asyncStarredDiscount.when(
-        data: (discount) => GestureDetector(
+        data: (discount) => InkWell(
+              borderRadius: BorderRadius.circular(16.0),
               onTap: () => context.navigateTo(
-                DiscountRoute(discount: discount),
+                DiscountRoute(discountId: discount.id),
               ),
               child: Container(
                 width: 200,

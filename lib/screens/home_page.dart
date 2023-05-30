@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clube_ldv/components/category_card.dart';
 import 'package:clube_ldv/components/simple_discount_card.dart';
 import 'package:clube_ldv/screens/error_page.dart';
-import 'package:clube_ldv/screens/info_page.dart';
 import 'package:clube_ldv/screens/loading_page.dart';
 import 'package:clube_ldv/state/discount_providers.dart';
 import 'package:clube_ldv/utils/categories.dart';
@@ -31,10 +30,6 @@ class HomePage extends ConsumerWidget {
                       context.navigateTo(const InfoRoute());
                     },
                     icon: const Icon(Icons.info_rounded),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.notifications),
                   ),
                 ],
               ),
@@ -111,14 +106,15 @@ class HomePage extends ConsumerWidget {
                           padding: const EdgeInsets.only(
                             left: 16.0,
                             right: 16.0,
-                            bottom: 4.0,
+                            bottom: 16.0,
                           ),
                           child: SimpleDiscountCard(
                             discount: discounts[index],
                           ),
                         );
                       },
-                      childCount: (discounts.length > 10) ? 10 : discounts.length,
+                      childCount:
+                          (discounts.length > 10) ? 10 : discounts.length,
                     ),
                   )
                 ],

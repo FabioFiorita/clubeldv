@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
-import '../model/category.dart';
-import '../model/discount.dart';
 import '../screens/categories_page.dart';
 import '../screens/category_discount_list_page.dart';
 import '../screens/discount_list_page.dart';
 import '../screens/discount_page.dart';
+import '../screens/empty_page.dart';
 import '../screens/home_page.dart';
 import '../screens/info_page.dart';
 
@@ -42,6 +40,7 @@ class AppRouter extends _$AppRouter {
     AutoRoute(
       page: DiscountRoute.page,
       path: '/descontos/:discount',
-    )
+    ),
+    AutoRoute(page: EmptyRoute.page, path: '*')
   ];
 }

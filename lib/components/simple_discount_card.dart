@@ -13,46 +13,62 @@ class SimpleDiscountCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String image = discount.company.image ?? '';
-    return Card(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(24.0)),
+    return InkWell(
+      borderRadius: BorderRadius.circular(16.0),
+      onTap: () => context.navigateTo(
+        DiscountRoute(discountId: discount.id),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.6),
+              offset: const Offset(2, 2),
+              blurRadius: 8,
+            ),
+          ],
         ),
-        child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-          onTap: () {
-            context.navigateTo(
-              DiscountRoute(discount: discount),
-            );
-          },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16.0),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(24.0),
-                  bottomLeft: Radius.circular(24.0),
-                ),
-                child: CachedNetworkImage(
-                  imageUrl: image,
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => const Icon(
-                    Icons.local_pizza_rounded,
-                    color: Colors.red,
-                  ),
+              CachedNetworkImage(
+                imageUrl: image,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.local_pizza_rounded,
+                  color: Colors.red,
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    discount.name,
-                    style: Theme.of(context).textTheme.titleLarge,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        discount.name,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      Text(
+                        discount.company.name,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

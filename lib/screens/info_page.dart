@@ -11,6 +11,14 @@ class InfoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sobre nós'),
+        leading: IconButton(
+          onPressed: () {
+            (context.router.canPop())
+                ? context.router.pop()
+                : context.router.replace(const HomeRoute());
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: Stack(alignment: AlignmentDirectional.topCenter, children: [
         Column(
@@ -18,7 +26,7 @@ class InfoPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image(
-              image: const AssetImage('images/pizza.jpeg'),
+              image: const AssetImage('assets/images/pizza.jpeg'),
               height: 200,
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
@@ -53,7 +61,7 @@ class InfoPage extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(200)),
             child: Image(
-              image: AssetImage('images/logo.jpeg'),
+              image: AssetImage('assets/images/logo.jpeg'),
               height: 200,
               width: 200,
               fit: BoxFit.cover,

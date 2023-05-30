@@ -11,38 +11,47 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(24.0)),
+    return InkWell(
+      borderRadius: BorderRadius.circular(16.0),
+      onTap: () => context.navigateTo(
+        CategoryDiscountListRoute(
+          categoryId: category.id,
         ),
-        child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-          onTap: () {
-            context.navigateTo(
-              CategoryDiscountListRoute(
-                category: category,
+      ),
+      child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16.0),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.6),
+                offset: const Offset(2, 2),
+                blurRadius: 6,
               ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Icon(
-                  category.icon,
-                  color: category.color,
-                  size: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    category.name,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-              ],
-            ),
+            ],
           ),
-        ));
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Icon(
+                    category.icon,
+                    color: category.color,
+                    size: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      category.name,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
   }
 }

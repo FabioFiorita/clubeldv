@@ -13,6 +13,14 @@ class CategoriesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Categorias"),
+        leading: IconButton(
+          onPressed: () {
+            (context.router.canPop())
+                ? context.router.pop()
+                : context.router.replace(const HomeRoute());
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
       body: ListView.builder(
         itemCount: categories.length,
@@ -26,7 +34,7 @@ class CategoriesPage extends StatelessWidget {
             onTap: () {
               context.pushRoute(
                 CategoryDiscountListRoute(
-                  category: categories[index],
+                  categoryId: categories[index].id,
                 ),
               );
             },

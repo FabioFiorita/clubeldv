@@ -113,6 +113,87 @@ class DiscountByCategoryProvider
   }
 }
 
+String _$discountHash() => r'1e3564f740deb64f6a86dd7b3eb8467d214cec5a';
+typedef DiscountRef = AutoDisposeProviderRef<AsyncValue<Discount>>;
+
+/// See also [discount].
+@ProviderFor(discount)
+const discountProvider = DiscountFamily();
+
+/// See also [discount].
+class DiscountFamily extends Family<AsyncValue<Discount>> {
+  /// See also [discount].
+  const DiscountFamily();
+
+  /// See also [discount].
+  DiscountProvider call({
+    required String id,
+  }) {
+    return DiscountProvider(
+      id: id,
+    );
+  }
+
+  @override
+  DiscountProvider getProviderOverride(
+    covariant DiscountProvider provider,
+  ) {
+    return call(
+      id: provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'discountProvider';
+}
+
+/// See also [discount].
+class DiscountProvider extends AutoDisposeProvider<AsyncValue<Discount>> {
+  /// See also [discount].
+  DiscountProvider({
+    required this.id,
+  }) : super.internal(
+          (ref) => discount(
+            ref,
+            id: id,
+          ),
+          from: discountProvider,
+          name: r'discountProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$discountHash,
+          dependencies: DiscountFamily._dependencies,
+          allTransitiveDependencies: DiscountFamily._allTransitiveDependencies,
+        );
+
+  final String id;
+
+  @override
+  bool operator ==(Object other) {
+    return other is DiscountProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
 String _$discountsHash() => r'857b8396a8ec5d1b2b4c8f852542b67820eba64a';
 
 /// See also [Discounts].

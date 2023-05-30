@@ -22,22 +22,28 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     DiscountRoute.name: (routeData) {
-      final args = routeData.argsAs<DiscountRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<DiscountRouteArgs>(
+          orElse: () =>
+              DiscountRouteArgs(discountId: pathParams.getString('discount')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: DiscountPage(
           key: args.key,
-          discount: args.discount,
+          discountId: args.discountId,
         ),
       );
     },
     CategoryDiscountListRoute.name: (routeData) {
-      final args = routeData.argsAs<CategoryDiscountListRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<CategoryDiscountListRouteArgs>(
+          orElse: () => CategoryDiscountListRouteArgs(
+              categoryId: pathParams.getString('category')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: CategoryDiscountListPage(
           key: args.key,
-          category: args.category,
+          categoryId: args.categoryId,
         ),
       );
     },
@@ -57,6 +63,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomePage(),
+      );
+    },
+    EmptyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EmptyPage(),
       );
     },
   };
@@ -81,14 +93,15 @@ class DiscountListRoute extends PageRouteInfo<void> {
 class DiscountRoute extends PageRouteInfo<DiscountRouteArgs> {
   DiscountRoute({
     Key? key,
-    required Discount discount,
+    required String discountId,
     List<PageRouteInfo>? children,
   }) : super(
           DiscountRoute.name,
           args: DiscountRouteArgs(
             key: key,
-            discount: discount,
+            discountId: discountId,
           ),
+          rawPathParams: {'discount': discountId},
           initialChildren: children,
         );
 
@@ -101,16 +114,16 @@ class DiscountRoute extends PageRouteInfo<DiscountRouteArgs> {
 class DiscountRouteArgs {
   const DiscountRouteArgs({
     this.key,
-    required this.discount,
+    required this.discountId,
   });
 
   final Key? key;
 
-  final Discount discount;
+  final String discountId;
 
   @override
   String toString() {
-    return 'DiscountRouteArgs{key: $key, discount: $discount}';
+    return 'DiscountRouteArgs{key: $key, discountId: $discountId}';
   }
 }
 
@@ -120,14 +133,15 @@ class CategoryDiscountListRoute
     extends PageRouteInfo<CategoryDiscountListRouteArgs> {
   CategoryDiscountListRoute({
     Key? key,
-    required Category category,
+    required String categoryId,
     List<PageRouteInfo>? children,
   }) : super(
           CategoryDiscountListRoute.name,
           args: CategoryDiscountListRouteArgs(
             key: key,
-            category: category,
+            categoryId: categoryId,
           ),
+          rawPathParams: {'category': categoryId},
           initialChildren: children,
         );
 
@@ -140,16 +154,16 @@ class CategoryDiscountListRoute
 class CategoryDiscountListRouteArgs {
   const CategoryDiscountListRouteArgs({
     this.key,
-    required this.category,
+    required this.categoryId,
   });
 
   final Key? key;
 
-  final Category category;
+  final String categoryId;
 
   @override
   String toString() {
-    return 'CategoryDiscountListRouteArgs{key: $key, category: $category}';
+    return 'CategoryDiscountListRouteArgs{key: $key, categoryId: $categoryId}';
   }
 }
 
@@ -191,6 +205,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EmptyPage]
+class EmptyRoute extends PageRouteInfo<void> {
+  const EmptyRoute({List<PageRouteInfo>? children})
+      : super(
+          EmptyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EmptyRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

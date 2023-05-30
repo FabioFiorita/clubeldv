@@ -12,7 +12,7 @@ class DiscountListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => context.navigateTo(DiscountRoute(discount: discount)),
+      onTap: () => context.navigateTo(DiscountRoute(discountId: discount.id)),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(32.0),
         child: CachedNetworkImage(

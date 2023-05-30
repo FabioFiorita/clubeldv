@@ -46,3 +46,13 @@ class StarredDiscount extends _$StarredDiscount {
     return await repository.getStarredDiscount();
   }
 }
+
+@riverpod
+AsyncValue<Discount> discount(DiscountRef ref, {required String id}) {
+  final asyncDiscounts = ref.watch(discountsProvider);
+  return asyncDiscounts.when(
+    data: (discounts) => AsyncData(discounts.firstWhere((discount) => discount.id == id)),
+    loading: () => const AsyncLoading(),
+    error: (error, stack) => AsyncError(error, stack),
+  );
+}

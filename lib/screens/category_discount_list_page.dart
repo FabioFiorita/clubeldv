@@ -1,28 +1,38 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clube_ldv/components/discount_list_tile.dart';
-import 'package:clube_ldv/model/category.dart';
+import 'package:clube_ldv/routes/app_router.dart';
 import 'package:clube_ldv/screens/error_page.dart';
 import 'package:clube_ldv/screens/loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/discount_providers.dart';
+import '../utils/categories.dart';
 
 @RoutePage()
 class CategoryDiscountListPage extends ConsumerWidget {
-  final Category category;
+  final String categoryId;
 
-  const CategoryDiscountListPage({Key? key, required this.category})
+  const CategoryDiscountListPage({Key? key, @PathParam('category') required this.categoryId})
       : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final category = categories.firstWhere((element) => element.id == categoryId);
     final asyncCategoryDiscounts =
-        ref.watch(discountByCategoryProvider(category: category.name));
+        ref.watch(discountByCategoryProvider(category: category.id));
     return asyncCategoryDiscounts.when(
       data: (categoryDiscounts) => Scaffold(
         appBar: AppBar(
           title: Text(category.name),
+          leading: IconButton(
+            onPressed: () {
+              context.router.canPop()
+                  ? context.router.pop()
+                  : context.router.replace(const HomeRoute());
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -35,15 +45,19 @@ class CategoryDiscountListPage extends ConsumerWidget {
                     );
                   },
                 )
-              : const Center(
+              : Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image(
-                        image: AssetImage("images/waiter.png"),
+                      const Image(
+                        image: AssetImage("assets/images/man.png",),
+                        height: 350,
                       ),
-                      Text("Nenhum desconto encontrado"),
+                      Padding(
+                        padding: EdgeInsets.only(top: 16.0),
+                        child: Text("Nenhum desconto encontrado", style: Theme.of(context).textTheme.bodyLarge,),
+                      ),
                     ],
                   ),
                 ),

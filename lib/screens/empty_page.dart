@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../routes/app_router.dart';
 
-class ErrorPage extends StatelessWidget {
-  const ErrorPage({Key? key}) : super(key: key);
+@RoutePage()
+class EmptyPage extends StatelessWidget {
+  const EmptyPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ErrorPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Text("Aconteceu um erro!", style: Theme.of(context).textTheme.bodyLarge,),
+              child: Text("Essa página não existe!", style: Theme.of(context).textTheme.bodyLarge,),
             ),
             ElevatedButton(
               onPressed: () {

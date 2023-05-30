@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../interface/repository.dart';
@@ -30,6 +31,7 @@ class DiscountRepository implements IRepository<Discount> {
         discounts.add(discount);
       }
     }
+    Logger().d("Requesting discounts from firestore with ${discounts.length} items");
     return discounts;
   }
 
@@ -37,16 +39,7 @@ class DiscountRepository implements IRepository<Discount> {
     final QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore.collection('starredDiscount').get();
     final Map<String, dynamic> discountData = querySnapshot.docs.first.data();
     final Discount discount = Discount.fromJson(discountData);
-    return discount;
-  }
-
-  @override
-  Future<Discount> getById(String id) async {
-    final Discount discount = await firestore
-        .collectionGroup('discounts')
-        .where('id', isEqualTo: id)
-        .get()
-        .then((value) => Discount.fromJson(value.docs.first.data()));
+    Logger().d("Requesting starred discount from firestore");
     return discount;
   }
 }

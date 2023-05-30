@@ -1,19 +1,27 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clube_ldv/components/discount_info_card.dart';
 import 'package:clube_ldv/model/discount.dart';
+import 'package:clube_ldv/routes/app_router.dart';
+import 'package:clube_ldv/screens/error_page.dart';
+import 'package:clube_ldv/screens/loading_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-@RoutePage()
-class DiscountPage extends StatelessWidget {
-  final Discount discount;
+import '../state/discount_providers.dart';
 
-  const DiscountPage({Key? key, required this.discount}) : super(key: key);
+@RoutePage()
+class DiscountPage extends ConsumerWidget {
+  final String discountId;
+
+  const DiscountPage({Key? key, @PathParam('discount') required this.discountId}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncDiscount = ref.watch(discountProvider(id: discountId));
+    return asyncDiscount.when(data: (discount) => Scaffold(
       body: Stack(
         alignment: Alignment.topLeft,
         children: [
@@ -26,9 +34,9 @@ class DiscountPage extends StatelessWidget {
                   width: double.infinity,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
+                  const CircularProgressIndicator(),
                   errorWidget: (context, url, error) =>
-                      const Icon(Icons.restaurant_menu_rounded),
+                  const Icon(Icons.restaurant_menu_rounded),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, right: 16.0),
@@ -39,7 +47,9 @@ class DiscountPage extends StatelessWidget {
                       backgroundColor: Colors.grey[200],
                       foregroundColor: Colors.grey, // <-- Splash color
                     ),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => context.router.canPop()
+                        ? context.router.pop()
+                        : context.router.replace(const HomeRoute()),
                     child: const Icon(Icons.close_rounded),
                   ),
                 ),
@@ -58,18 +68,18 @@ class DiscountPage extends StatelessWidget {
                       child: ListTile(
                         leading: const Icon(FontAwesomeIcons.instagram),
                         iconColor: Colors.red,
-                        title: Text(discount.company.instagram),
+                        title: SelectableText(discount.company.instagram),
                         textColor: Colors.red,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 16.0, bottom: 8.0),
+                      padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
                       child: DiscountInfoCard(
                         icon: Icons.card_giftcard_rounded,
                         info: discount.name,
                         secondaryIcon: Icons.calendar_month_rounded,
                         secondaryInfo:
-                            "Válido até ${discount.validUntil.day}/${discount.validUntil.month}/${discount.validUntil.year}",
+                        "Válido até ${discount.validUntil.day}/${discount.validUntil.month}/${discount.validUntil.year}",
                       ),
                     ),
                     DiscountInfoCard(
@@ -77,7 +87,7 @@ class DiscountPage extends StatelessWidget {
                       info: discount.company.address,
                       secondaryIcon: Icons.phone,
                       secondaryInfo:
-                          "(${discount.company.number.toString().substring(0, 2)}) ${discount.company.number.toString().substring(2, 6)}-${discount.company.number.toString().substring(6, 10)}",
+                      "(${discount.company.number.toString().substring(0, 2)}) ${discount.company.number.toString().substring(2, 6)}-${discount.company.number.toString().substring(6, 10)}",
                     )
                   ],
                 ),
@@ -94,14 +104,14 @@ class DiscountPage extends StatelessWidget {
                 width: 64,
                 fit: BoxFit.cover,
                 placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
+                const CircularProgressIndicator(),
                 errorWidget: (context, url, error) =>
-                    const Icon(Icons.restaurant_menu_rounded),
+                const Icon(Icons.restaurant_menu_rounded),
               ),
             ),
           ),
         ],
       ),
-    );
+    ), loading: () => const LoadingPage(), error: (error, stack) => const ErrorPage());
   }
 }
