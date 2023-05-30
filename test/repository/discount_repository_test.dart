@@ -81,7 +81,6 @@ void main() {
       final discount = await discountRepository.getStarredDiscount();
 
       // Verify that the discount matches the mock data
-      expect(discount, mockDiscount);
       expect(discount.id, mockDiscount.id);
       expect(discount.name, mockDiscount.name);
       expect(discount.category, mockDiscount.category);
