@@ -49,26 +49,14 @@ void main() {
       expect(discounts.first.company.instagram, mockDiscount.company.instagram);
       expect(discounts.first.company.openingHours,
           mockDiscount.company.openingHours);
-      expect(discounts.first.company.createdAt.day, mockDiscount.company.createdAt.day);
-      expect(discounts.first.company.createdAt.month, mockDiscount.company.createdAt.month);
-      expect(discounts.first.company.createdAt.year, mockDiscount.company.createdAt.year);
-      expect(discounts.first.company.updatedAt.day, mockDiscount.company.updatedAt.day);
-      expect(discounts.first.company.updatedAt.month, mockDiscount.company.updatedAt.month);
-      expect(discounts.first.company.updatedAt.year, mockDiscount.company.updatedAt.year);
-      expect(discounts.first.validFrom.day, mockDiscount.validFrom.day);
-      expect(discounts.first.validFrom.month, mockDiscount.validFrom.month);
-      expect(discounts.first.validFrom.year, mockDiscount.validFrom.year);
-      expect(discounts.first.validUntil.day, mockDiscount.validUntil.day);
-      expect(discounts.first.validUntil.month, mockDiscount.validUntil.month);
-      expect(discounts.first.validUntil.year, mockDiscount.validUntil.year);
+      expect(discounts.first.company.createdAt, mockDiscount.company.createdAt);
+      expect(discounts.first.company.updatedAt, mockDiscount.company.updatedAt);
+      expect(discounts.first.validFrom, mockDiscount.validFrom);
+      expect(discounts.first.validUntil, mockDiscount.validUntil);
       expect(discounts.first.image, mockDiscount.image);
       expect(discounts.first.link, mockDiscount.link);
-      expect(discounts.first.createdAt.day, mockDiscount.createdAt.day);
-      expect(discounts.first.createdAt.month, mockDiscount.createdAt.month);
-      expect(discounts.first.createdAt.year, mockDiscount.createdAt.year);
-      expect(discounts.first.updatedAt.day, mockDiscount.updatedAt.day);
-      expect(discounts.first.updatedAt.month, mockDiscount.updatedAt.month);
-      expect(discounts.first.updatedAt.year, mockDiscount.updatedAt.year);
+      expect(discounts.first.createdAt, mockDiscount.createdAt);
+      expect(discounts.first.updatedAt, mockDiscount.updatedAt);
     });
 
     test('getStarredDiscount returns a discount', () async {
@@ -82,6 +70,7 @@ void main() {
 
       // Verify that the discount matches the mock data
       expect(discount.id, mockDiscount.id);
+      expect(discount.id, mockDiscount.id);
       expect(discount.name, mockDiscount.name);
       expect(discount.category, mockDiscount.category);
       expect(discount.description, mockDiscount.description);
@@ -93,26 +82,14 @@ void main() {
       expect(discount.company.image, mockDiscount.company.image);
       expect(discount.company.instagram, mockDiscount.company.instagram);
       expect(discount.company.openingHours, mockDiscount.company.openingHours);
-      expect(discount.company.createdAt.day, mockDiscount.company.createdAt.day);
-      expect(discount.company.createdAt.month, mockDiscount.company.createdAt.month);
-      expect(discount.company.createdAt.year, mockDiscount.company.createdAt.year);
-      expect(discount.company.updatedAt.day, mockDiscount.company.updatedAt.day);
-      expect(discount.company.updatedAt.month, mockDiscount.company.updatedAt.month);
-      expect(discount.company.updatedAt.year, mockDiscount.company.updatedAt.year);
-      expect(discount.validFrom.day, mockDiscount.validFrom.day);
-      expect(discount.validFrom.month, mockDiscount.validFrom.month);
-      expect(discount.validFrom.year, mockDiscount.validFrom.year);
-      expect(discount.validUntil.day, mockDiscount.validUntil.day);
-      expect(discount.validUntil.month, mockDiscount.validUntil.month);
-      expect(discount.validUntil.year, mockDiscount.validUntil.year);
+      expect(discount.company.createdAt, mockDiscount.company.createdAt);
+      expect(discount.company.updatedAt, mockDiscount.company.updatedAt);
+      expect(discount.validFrom, mockDiscount.validFrom);
+      expect(discount.validUntil, mockDiscount.validUntil);
       expect(discount.image, mockDiscount.image);
       expect(discount.link, mockDiscount.link);
-      expect(discount.createdAt.day, mockDiscount.createdAt.day);
-      expect(discount.createdAt.month, mockDiscount.createdAt.month);
-      expect(discount.createdAt.year, mockDiscount.createdAt.year);
-      expect(discount.updatedAt.day, mockDiscount.updatedAt.day);
-      expect(discount.updatedAt.month, mockDiscount.updatedAt.month);
-      expect(discount.updatedAt.year, mockDiscount.updatedAt.year);
+      expect(discount.createdAt, mockDiscount.createdAt);
+      expect(discount.updatedAt, mockDiscount.updatedAt);
     });
   });
 
