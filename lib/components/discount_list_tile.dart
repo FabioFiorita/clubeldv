@@ -22,6 +22,7 @@ class DiscountListTile extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: discount.image ?? '',
           width: 50,
+          height: 50,
           fit: BoxFit.cover,
           placeholder: (context, url) => const CircularProgressIndicator(),
           errorWidget: (context, url, error) => const Icon(Icons.restaurant_menu_rounded),

@@ -26,24 +26,23 @@ class DiscountInfoCard extends StatelessWidget {
         ],
       ),
       child: ClipRRect(
-          borderRadius: context.circularRadius,
-          child: Padding(
-            padding: context.edgeInsetsSmall,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: discountInfoList.length,
-              itemBuilder: (context, index) {
-                final discountInfo = discountInfoList[index];
-                return ListTile(
-                  leading: Icon(
-                    discountInfo.icon,
-                  ),
-                  iconColor: Colors.red,
-                  title: SelectableText(discountInfo.info),
-                );
-              },
+        borderRadius: context.circularRadius,
+        child: Padding(
+          padding: context.edgeInsetsSmall,
+          child: Column(
+            children: List.generate(
+              discountInfoList.length,
+              (index) => ListTile(
+                leading: Icon(
+                  discountInfoList[index].icon,
+                ),
+                iconColor: Colors.red,
+                title: SelectableText(discountInfoList[index].info),
+              ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
