@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:clube_ldv/model/discount.dart';
-import 'package:clube_ldv/routes/app_router.dart';
+import 'package:clubeldv/model/discount.dart';
+import 'package:clubeldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 class SimpleDiscountCard extends StatelessWidget {
