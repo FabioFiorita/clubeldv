@@ -30,11 +30,11 @@ class DiscountPage extends ConsumerWidget {
           final Category category = categories
               .firstWhere((category) => category.id == discount.category);
           return Scaffold(
-            body: Stack(
-              alignment: Alignment.topLeft,
-              children: [
-                SingleChildScrollView(
-                  child: Column(
+            body: SingleChildScrollView(
+              child: Stack(
+                alignment: Alignment.topLeft,
+                children: [
+                  Column(
                     children: [
                       Stack(alignment: Alignment.topRight, children: [
                         CachedNetworkImage(
@@ -48,7 +48,8 @@ class DiscountPage extends ConsumerWidget {
                               const Icon(Icons.restaurant_menu_rounded),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 16.0, right: 16.0),
+                          padding:
+                              const EdgeInsets.only(top: 16.0, right: 16.0),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               shape: const CircleBorder(),
@@ -78,13 +79,14 @@ class DiscountPage extends ConsumerWidget {
                               child: ListTile(
                                 leading: const Icon(FontAwesomeIcons.instagram),
                                 iconColor: Colors.red,
-                                title: SelectableText(discount.company.instagram),
+                                title:
+                                    SelectableText(discount.company.instagram),
                                 textColor: Colors.red,
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                              padding: const EdgeInsets.only(
+                                  top: 16.0, bottom: 16.0),
                               child: DiscountInfoCard(
                                 discountInfoList: [
                                   DiscountInfo(
@@ -136,24 +138,24 @@ class DiscountPage extends ConsumerWidget {
                       )
                     ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 168.0, left: 16.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(32.0),
-                    child: CachedNetworkImage(
-                      imageUrl: discount.company.image,
-                      height: 64,
-                      width: 64,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.restaurant_menu_rounded),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 168.0, left: 16.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(32.0),
+                      child: CachedNetworkImage(
+                        imageUrl: discount.company.image,
+                        height: 64,
+                        width: 64,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.restaurant_menu_rounded),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
