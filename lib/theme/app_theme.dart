@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme = ThemeData(
   primarySwatch: Colors.red,
-  textTheme: textTheme,
+  textTheme: _textTheme,
   useMaterial3: true,
   appBarTheme: const AppBarTheme(
     centerTitle: true,
@@ -12,7 +12,7 @@ ThemeData appTheme = ThemeData(
 );
 
 
-TextTheme textTheme = TextTheme(
+TextTheme _textTheme = TextTheme(
   displayLarge:
       GoogleFonts.poppins(fontSize: 48.0, fontWeight: FontWeight.w700),
   displayMedium:

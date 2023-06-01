@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../model/category.dart';
@@ -12,7 +13,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(16.0),
+      borderRadius: context.circularRadius,
       onTap: () => context.navigateTo(
         CategoryDiscountListRoute(
           categoryId: category.id,
@@ -21,7 +22,7 @@ class CategoryCard extends StatelessWidget {
       child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(16.0),
+            borderRadius: context.circularRadius,
             boxShadow: <BoxShadow>[
               BoxShadow(
                 color: Colors.grey.withOpacity(0.6),
@@ -31,9 +32,9 @@ class CategoryCard extends StatelessWidget {
             ],
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
+            borderRadius: context.circularRadius,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: context.edgeInsetsSmall,
               child: Row(
                 children: [
                   Icon(
@@ -42,10 +43,10 @@ class CategoryCard extends StatelessWidget {
                     size: 30,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: context.edgeInsetsSmall,
                     child: Text(
                       category.name,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: context.textTheme.titleLarge,
                     ),
                   ),
                 ],

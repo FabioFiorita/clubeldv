@@ -21,7 +21,7 @@ class DiscountRepository implements IRepository<Discount> {
   Future<List<Discount>> getAll() async {
     final List<Discount> discounts = [];
     final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collectionGroup('discounts').orderBy('category').get();
+        await firestore.collectionGroup('discounts').orderBy('name').get();
     for (var element in querySnapshot.docs) {
       final Map<String, dynamic> discountData = element.data();
       final companyQuerySnapshot = await element.reference.parent.parent?.get();
