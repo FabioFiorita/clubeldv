@@ -2,8 +2,9 @@
 ## Aplicação Flutter Web do Clube de Descontos do Lugares do Vale
 [![Test and Build](https://github.com/FabioFiorita/clubeldv/actions/workflows/CI.yml/badge.svg)](https://github.com/FabioFiorita/clubeldv/actions/workflows/CI.yml) 
 [![Build and Deploy to Firebase Hosting on PR](https://github.com/FabioFiorita/clubeldv/actions/workflows/firebase-hosting-pull-request.yml/badge.svg)](https://github.com/FabioFiorita/clubeldv/actions/workflows/firebase-hosting-pull-request.yml)
+[![codecov](https://codecov.io/gh/FabioFiorita/clubeldv/branch/main/graph/badge.svg?token=gGMmbYqy8A)](https://codecov.io/gh/FabioFiorita/clubeldv)
+[![codebeat badge](https://codebeat.co/badges/8d83af9e-4f74-4290-97d2-4af2510d177d)](https://codebeat.co/projects/github-com-fabiofiorita-clubeldv-main)
 
-![LICENSE](https://img.shields.io/github/license/FabioFiorita/clubeldv)
 ![GitHub language count](https://img.shields.io/github/languages/count/FabioFiorita/clubeldv)
 ![GitHub top language](https://img.shields.io/github/languages/top/FabioFiorita/clubeldv)
 
