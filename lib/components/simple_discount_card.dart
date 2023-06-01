@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:clube_ldv/model/discount.dart';
-import 'package:clube_ldv/routes/app_router.dart';
+import 'package:clubeldv/extensions/context_extensions.dart';
+import 'package:clubeldv/model/discount.dart';
+import 'package:clubeldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 class SimpleDiscountCard extends StatelessWidget {
@@ -12,16 +13,16 @@ class SimpleDiscountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String image = discount.company.image ?? '';
+    final String image = discount.company.image;
     return InkWell(
-      borderRadius: BorderRadius.circular(16.0),
+      borderRadius: context.circularRadius,
       onTap: () => context.navigateTo(
         DiscountRoute(discountId: discount.id),
       ),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: context.circularRadius,
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.grey.withOpacity(0.6),
@@ -31,7 +32,7 @@ class SimpleDiscountCard extends StatelessWidget {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: context.circularRadius,
           child: Row(
             children: [
               CachedNetworkImage(
@@ -46,19 +47,19 @@ class SimpleDiscountCard extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: context.edgeInsetsSmall,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         discount.name,
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: context.textTheme.titleLarge,
                       ),
                       Text(
                         discount.company.name,
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: Theme.of(context).colorScheme.secondary,
+                        style: context.textTheme.titleSmall?.copyWith(
+                              color: context.colorScheme.secondary,
                             ),
                       ),
                     ],

@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
 class ProviderLogger extends ProviderObserver {
-  Logger _logger = Logger();
+  final Logger _logger = Logger();
   @override
   void didUpdateProvider(
     ProviderBase<Object?> provider,

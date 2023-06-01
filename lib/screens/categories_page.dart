@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clube_ldv/utils/categories.dart';
+import 'package:clubeldv/utils/categories.dart';
 import 'package:flutter/material.dart';
 
 import '../routes/app_router.dart';

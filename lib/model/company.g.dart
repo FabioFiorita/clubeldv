@@ -18,17 +18,3 @@ _$_Company _$$_CompanyFromJson(Map<String, dynamic> json) => _$_Company(
       createdAt: _sendAtFromJson(json['createdAt'] as Timestamp),
       updatedAt: _sendAtFromJson(json['updatedAt'] as Timestamp),
     );
-
-Map<String, dynamic> _$$_CompanyToJson(_$_Company instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'number': instance.number,
-      'address': instance.address,
-      'city': instance.city,
-      'image': instance.image,
-      'instagram': instance.instagram,
-      'openingHours': instance.openingHours,
-      'createdAt': _sendAtToJson(instance.createdAt),
-      'updatedAt': _sendAtToJson(instance.updatedAt),
-    };

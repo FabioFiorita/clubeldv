@@ -28,12 +28,11 @@ mixin _$Company {
   String get image => throw _privateConstructorUsedError;
   String get instagram => throw _privateConstructorUsedError;
   String get openingHours => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+  @JsonKey(fromJson: _sendAtFromJson)
   DateTime get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+  @JsonKey(fromJson: _sendAtFromJson)
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CompanyCopyWith<Company> get copyWith => throw _privateConstructorUsedError;
 }
@@ -52,10 +51,8 @@ abstract class $CompanyCopyWith<$Res> {
       String image,
       String instagram,
       String openingHours,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
-          DateTime createdAt,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
-          DateTime updatedAt});
+      @JsonKey(fromJson: _sendAtFromJson) DateTime createdAt,
+      @JsonKey(fromJson: _sendAtFromJson) DateTime updatedAt});
 }
 
 /// @nodoc
@@ -143,10 +140,8 @@ abstract class _$$_CompanyCopyWith<$Res> implements $CompanyCopyWith<$Res> {
       String image,
       String instagram,
       String openingHours,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
-          DateTime createdAt,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
-          DateTime updatedAt});
+      @JsonKey(fromJson: _sendAtFromJson) DateTime createdAt,
+      @JsonKey(fromJson: _sendAtFromJson) DateTime updatedAt});
 }
 
 /// @nodoc
@@ -216,7 +211,7 @@ class __$$_CompanyCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_Company implements _Company {
   const _$_Company(
       {required this.id,
@@ -227,10 +222,8 @@ class _$_Company implements _Company {
       required this.image,
       required this.instagram,
       required this.openingHours,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
-          required this.createdAt,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
-          required this.updatedAt});
+      @JsonKey(fromJson: _sendAtFromJson) required this.createdAt,
+      @JsonKey(fromJson: _sendAtFromJson) required this.updatedAt});
 
   factory _$_Company.fromJson(Map<String, dynamic> json) =>
       _$$_CompanyFromJson(json);
@@ -252,10 +245,10 @@ class _$_Company implements _Company {
   @override
   final String openingHours;
   @override
-  @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+  @JsonKey(fromJson: _sendAtFromJson)
   final DateTime createdAt;
   @override
-  @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+  @JsonKey(fromJson: _sendAtFromJson)
   final DateTime updatedAt;
 
   @override
@@ -294,13 +287,6 @@ class _$_Company implements _Company {
   @pragma('vm:prefer-inline')
   _$$_CompanyCopyWith<_$_Company> get copyWith =>
       __$$_CompanyCopyWithImpl<_$_Company>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_CompanyToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Company implements Company {
@@ -313,9 +299,9 @@ abstract class _Company implements Company {
       required final String image,
       required final String instagram,
       required final String openingHours,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+      @JsonKey(fromJson: _sendAtFromJson)
           required final DateTime createdAt,
-      @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+      @JsonKey(fromJson: _sendAtFromJson)
           required final DateTime updatedAt}) = _$_Company;
 
   factory _Company.fromJson(Map<String, dynamic> json) = _$_Company.fromJson;
@@ -337,10 +323,10 @@ abstract class _Company implements Company {
   @override
   String get openingHours;
   @override
-  @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+  @JsonKey(fromJson: _sendAtFromJson)
   DateTime get createdAt;
   @override
-  @JsonKey(fromJson: _sendAtFromJson, toJson: _sendAtToJson)
+  @JsonKey(fromJson: _sendAtFromJson)
   DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)

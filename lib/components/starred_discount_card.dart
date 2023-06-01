@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:clube_ldv/components/loading_component.dart';
-import 'package:clube_ldv/routes/app_router.dart';
+import 'package:clubeldv/components/loading_component.dart';
+import 'package:clubeldv/extensions/context_extensions.dart';
+import 'package:clubeldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,14 +17,14 @@ class StarredDiscountCard extends ConsumerWidget {
 
     return asyncStarredDiscount.when(
         data: (discount) => InkWell(
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: context.circularRadius,
               onTap: () => context.navigateTo(
                 DiscountRoute(discountId: discount.id),
               ),
               child: Container(
                 width: 200,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0),
+                  borderRadius: context.circularRadius,
                   boxShadow: <BoxShadow>[
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.6),
@@ -33,7 +34,7 @@ class StarredDiscountCard extends ConsumerWidget {
                   ],
                 ),
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.0),
+                    borderRadius: context.circularRadius,
                     child: Column(
                       children: [
                         CachedNetworkImage(
@@ -44,36 +45,29 @@ class StarredDiscountCard extends ConsumerWidget {
                           errorWidget: (context, url, error) => Container(),
                         ),
                         ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(16.0),
-                              bottomRight: Radius.circular(16.0)),
+                          borderRadius: context.bottomCircularRadius,
                           child: Container(
                             width: double.infinity,
                             color: Colors.white,
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: context.edgeInsetsSmall,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     discount.name,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
+                                    style: context.textTheme.titleLarge,
                                   ),
                                   Text(
                                     discount.company.name,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
+                                    style: context.textTheme.titleMedium
                                         ?.copyWith(
                                             color:
                                                 Colors.grey.withOpacity(0.8)),
                                   ),
                                   Text(
                                     "Valido até ${discount.validUntil.day}/${discount.validUntil.month}/${discount.validUntil.year}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
+                                    style: context.textTheme.titleMedium
                                         ?.copyWith(
                                             color:
                                                 Colors.grey.withOpacity(0.8)),

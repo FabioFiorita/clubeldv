@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:clube_ldv/model/company.dart';
+import 'package:clubeldv/model/company.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'discount.freezed.dart';
 part 'discount.g.dart';
 
-@Freezed()
+@Freezed(toJson: false)
 class Discount with _$Discount {
   const factory Discount({
     required String id,
@@ -26,4 +26,4 @@ class Discount with _$Discount {
 }
 
 DateTime _sendAtFromJson(Timestamp timestamp) =>
-    DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch);
+    timestamp.toDate();

@@ -36,7 +36,6 @@ mixin _$Discount {
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DiscountCopyWith<Discount> get copyWith =>
       throw _privateConstructorUsedError;
@@ -242,7 +241,7 @@ class __$$_DiscountCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_Discount implements _Discount {
   const _$_Discount(
       {required this.id,
@@ -326,13 +325,6 @@ class _$_Discount implements _Discount {
   @pragma('vm:prefer-inline')
   _$$_DiscountCopyWith<_$_Discount> get copyWith =>
       __$$_DiscountCopyWithImpl<_$_Discount>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_DiscountToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Discount implements Discount {

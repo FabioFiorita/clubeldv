@@ -11,6 +11,7 @@ final discountRepositoryProvider = Provider<DiscountRepository>((ref) {
 
 class DiscountRepository implements IRepository<Discount> {
   final FirebaseFirestore firestore;
+  final Logger _logger = Logger();
 
   DiscountRepository(
     this.firestore,
@@ -20,7 +21,7 @@ class DiscountRepository implements IRepository<Discount> {
   Future<List<Discount>> getAll() async {
     final List<Discount> discounts = [];
     final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await firestore.collectionGroup('discounts').orderBy('category').get();
+        await firestore.collectionGroup('discounts').orderBy('name').get();
     for (var element in querySnapshot.docs) {
       final Map<String, dynamic> discountData = element.data();
       final companyQuerySnapshot = await element.reference.parent.parent?.get();
@@ -31,7 +32,7 @@ class DiscountRepository implements IRepository<Discount> {
         discounts.add(discount);
       }
     }
-    Logger().d("Requesting discounts from firestore with ${discounts.length} items");
+    _logger.d("Requesting discounts from firestore with ${discounts.length} items");
     return discounts;
   }
 
@@ -39,7 +40,7 @@ class DiscountRepository implements IRepository<Discount> {
     final QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore.collection('starredDiscount').get();
     final Map<String, dynamic> discountData = querySnapshot.docs.first.data();
     final Discount discount = Discount.fromJson(discountData);
-    Logger().d("Requesting starred discount from firestore");
+    _logger.d("Requesting starred discount from firestore");
     return discount;
   }
 }

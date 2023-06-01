@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clube_ldv/components/category_card.dart';
-import 'package:clube_ldv/components/simple_discount_card.dart';
-import 'package:clube_ldv/screens/error_page.dart';
-import 'package:clube_ldv/screens/loading_page.dart';
-import 'package:clube_ldv/state/discount_providers.dart';
-import 'package:clube_ldv/utils/categories.dart';
+import 'package:clubeldv/components/category_card.dart';
+import 'package:clubeldv/components/simple_discount_card.dart';
+import 'package:clubeldv/screens/error_page.dart';
+import 'package:clubeldv/screens/loading_page.dart';
+import 'package:clubeldv/state/discount_providers.dart';
+import 'package:clubeldv/utils/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clube_ldv/components/discount_list_tile.dart';
-import 'package:clube_ldv/routes/app_router.dart';
-import 'package:clube_ldv/screens/error_page.dart';
-import 'package:clube_ldv/screens/loading_page.dart';
+import 'package:clubeldv/components/discount_list_tile.dart';
+import 'package:clubeldv/extensions/context_extensions.dart';
+import 'package:clubeldv/routes/app_router.dart';
+import 'package:clubeldv/screens/error_page.dart';
+import 'package:clubeldv/screens/loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -55,8 +56,8 @@ class CategoryDiscountListPage extends ConsumerWidget {
                         height: 350,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 16.0),
-                        child: Text("Nenhum desconto encontrado", style: Theme.of(context).textTheme.bodyLarge,),
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Text("Nenhum desconto encontrado", style: context.textTheme.bodyLarge,),
                       ),
                     ],
                   ),

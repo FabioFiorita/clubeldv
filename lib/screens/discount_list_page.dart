@@ -1,13 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clube_ldv/screens/error_page.dart';
-import 'package:clube_ldv/screens/loading_page.dart';
+import 'package:clubeldv/extensions/context_extensions.dart';
+import 'package:clubeldv/screens/error_page.dart';
+import 'package:clubeldv/screens/loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/discount_list_tile.dart';
+import '../components/discount_sort_menu.dart';
 import '../model/discount.dart';
 import '../routes/app_router.dart';
 import '../state/discount_providers.dart';
+import '../utils/discount_order.dart';
 
 @RoutePage()
 class DiscountListPage extends ConsumerStatefulWidget {
@@ -23,6 +26,8 @@ class DiscountListPageState extends ConsumerState<DiscountListPage> {
   final TextEditingController _searchController = TextEditingController();
   bool _isSearching = false;
   List<Discount> filteredDiscounts = [];
+  bool _isAscending = true;
+  DiscountOrder _currentOrder = DiscountOrder.category;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +46,28 @@ class DiscountListPageState extends ConsumerState<DiscountListPage> {
                   },
                   icon: const Icon(Icons.arrow_back),
                 ),
+                actions: [
+                  DiscountSortMenu(
+                    currentOrder: _currentOrder,
+                    isAscending: _isAscending,
+                    onChanged: (order, isAscending) {
+                      setState(() {
+                        _currentOrder = order;
+                        _isAscending = isAscending;
+                        _sortDiscounts(discounts);
+                      });
+                    },
+                  ),
+                ],
               ),
               body: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: context.edgeInsets,
                       child: SearchBar(
                         controller: _searchController,
+                        hintText: "Pesquisar descontos",
                         onChanged: (value) {
                           _filterSearchDiscounts(value, discounts);
                         },
@@ -122,6 +141,30 @@ class DiscountListPageState extends ConsumerState<DiscountListPage> {
         return discountName.contains(searchLower) ||
             companyName.contains(searchLower);
       }).toList();
+    });
+  }
+
+  _sortDiscounts(List<Discount> discounts) {
+    setState(() {
+      switch (_currentOrder) {
+        case DiscountOrder.alphabetical:
+          discounts.sort(
+              (a, b) => a.name.compareTo(b.name) * (_isAscending ? 1 : -1));
+          break;
+        case DiscountOrder.validUntil:
+          discounts.sort((a, b) =>
+              a.validUntil.compareTo(b.validUntil) * (_isAscending ? 1 : -1));
+          break;
+        case DiscountOrder.company:
+          discounts.sort((a, b) =>
+              a.company.name.compareTo(b.company.name) *
+              (_isAscending ? 1 : -1));
+          break;
+        default:
+          discounts.sort((a, b) =>
+              a.category.compareTo(b.category) * (_isAscending ? 1 : -1));
+          break;
+      }
     });
   }
 }
