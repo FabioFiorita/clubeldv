@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData appTheme = ThemeData(
-  primarySwatch: Colors.red,
-  textTheme: _textTheme,
-  useMaterial3: true,
-  appBarTheme: const AppBarTheme(
-    centerTitle: true,
-    surfaceTintColor: Colors.red,
-  )
-);
-
+    primarySwatch: Colors.red,
+    textTheme: _textTheme,
+    useMaterial3: true,
+    appBarTheme: const AppBarTheme(
+      centerTitle: true,
+      surfaceTintColor: Colors.red,
+    ));
 
 TextTheme _textTheme = TextTheme(
   displayLarge:

@@ -3,6 +3,7 @@ import 'package:logger/logger.dart';
 
 class ProviderLogger extends ProviderObserver {
   final Logger _logger = Logger();
+
   @override
   void didUpdateProvider(
     ProviderBase<Object?> provider,

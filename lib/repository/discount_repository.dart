@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'repository.dart';
 import '../model/discount.dart';
+import 'repository.dart';
 
 final discountRepositoryProvider = Provider<DiscountRepository>((ref) {
   return DiscountRepository(FirebaseFirestore.instance);
@@ -32,12 +32,14 @@ class DiscountRepository implements IRepository<Discount> {
         discounts.add(discount);
       }
     }
-    _logger.d("Requesting discounts from firestore with ${discounts.length} items");
+    _logger.d(
+        "Requesting discounts from firestore with ${discounts.length} items");
     return discounts;
   }
 
   Future<Discount> getStarredDiscount() async {
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await firestore.collection('starredDiscount').get();
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await firestore.collection('starredDiscount').get();
     final Map<String, dynamic> discountData = querySnapshot.docs.first.data();
     final Discount discount = Discount.fromJson(discountData);
     _logger.d("Requesting starred discount from firestore");

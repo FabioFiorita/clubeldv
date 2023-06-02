@@ -25,5 +25,4 @@ class Discount with _$Discount {
       _$DiscountFromJson(json);
 }
 
-DateTime _sendAtFromJson(Timestamp timestamp) =>
-    timestamp.toDate();
+DateTime _sendAtFromJson(Timestamp timestamp) => timestamp.toDate();

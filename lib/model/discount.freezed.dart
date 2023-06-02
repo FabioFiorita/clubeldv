@@ -21,18 +21,28 @@ Discount _$DiscountFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Discount {
   String get id => throw _privateConstructorUsedError;
+
   String get name => throw _privateConstructorUsedError;
+
   String get category => throw _privateConstructorUsedError;
+
   String get description => throw _privateConstructorUsedError;
+
   Company get company => throw _privateConstructorUsedError;
+
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get validFrom => throw _privateConstructorUsedError;
+
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get validUntil => throw _privateConstructorUsedError;
+
   String? get image => throw _privateConstructorUsedError;
+
   String? get link => throw _privateConstructorUsedError;
+
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get createdAt => throw _privateConstructorUsedError;
+
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -45,6 +55,7 @@ mixin _$Discount {
 abstract class $DiscountCopyWith<$Res> {
   factory $DiscountCopyWith(Discount value, $Res Function(Discount) then) =
       _$DiscountCopyWithImpl<$Res, Discount>;
+
   @useResult
   $Res call(
       {String id,
@@ -69,6 +80,7 @@ class _$DiscountCopyWithImpl<$Res, $Val extends Discount>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -149,6 +161,7 @@ abstract class _$$_DiscountCopyWith<$Res> implements $DiscountCopyWith<$Res> {
   factory _$$_DiscountCopyWith(
           _$_Discount value, $Res Function(_$_Discount) then) =
       __$$_DiscountCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -334,45 +347,53 @@ abstract class _Discount implements Discount {
       required final String category,
       required final String description,
       required final Company company,
-      @JsonKey(fromJson: _sendAtFromJson)
-          required final DateTime validFrom,
-      @JsonKey(fromJson: _sendAtFromJson)
-          required final DateTime validUntil,
+      @JsonKey(fromJson: _sendAtFromJson) required final DateTime validFrom,
+      @JsonKey(fromJson: _sendAtFromJson) required final DateTime validUntil,
       final String? image,
       final String? link,
+      @JsonKey(fromJson: _sendAtFromJson) required final DateTime createdAt,
       @JsonKey(fromJson: _sendAtFromJson)
-          required final DateTime createdAt,
-      @JsonKey(fromJson: _sendAtFromJson)
-          required final DateTime updatedAt}) = _$_Discount;
+      required final DateTime updatedAt}) = _$_Discount;
 
   factory _Discount.fromJson(Map<String, dynamic> json) = _$_Discount.fromJson;
 
   @override
   String get id;
+
   @override
   String get name;
+
   @override
   String get category;
+
   @override
   String get description;
+
   @override
   Company get company;
+
   @override
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get validFrom;
+
   @override
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get validUntil;
+
   @override
   String? get image;
+
   @override
   String? get link;
+
   @override
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get createdAt;
+
   @override
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get updatedAt;
+
   @override
   @JsonKey(ignore: true)
   _$$_DiscountCopyWith<_$_Discount> get copyWith =>

@@ -14,12 +14,14 @@ import '../utils/categories.dart';
 class CategoryDiscountListPage extends ConsumerWidget {
   final String categoryId;
 
-  const CategoryDiscountListPage({Key? key, @PathParam('category') required this.categoryId})
+  const CategoryDiscountListPage(
+      {Key? key, @PathParam('category') required this.categoryId})
       : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final category = categories.firstWhere((element) => element.id == categoryId);
+    final category =
+        categories.firstWhere((element) => element.id == categoryId);
     final asyncCategoryDiscounts =
         ref.watch(discountByCategoryProvider(category: category.id));
     return asyncCategoryDiscounts.when(
@@ -52,12 +54,17 @@ class CategoryDiscountListPage extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Image(
-                        image: AssetImage("assets/images/man.png",),
+                        image: AssetImage(
+                          "assets/images/man.png",
+                        ),
                         height: 350,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16.0),
-                        child: Text("Nenhum desconto encontrado", style: context.textTheme.bodyLarge,),
+                        child: Text(
+                          "Nenhum desconto encontrado",
+                          style: context.textTheme.bodyLarge,
+                        ),
                       ),
                     ],
                   ),
