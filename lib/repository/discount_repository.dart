@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../interface/repository.dart';
+import 'repository.dart';
 import '../model/discount.dart';
 
 final discountRepositoryProvider = Provider<DiscountRepository>((ref) {
