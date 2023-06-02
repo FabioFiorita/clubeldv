@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clubeldv/components/loading_component.dart';
 import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:clubeldv/routes/app_router.dart';
@@ -37,12 +36,13 @@ class StarredDiscountCard extends ConsumerWidget {
                     borderRadius: context.circularRadius,
                     child: Column(
                       children: [
-                        CachedNetworkImage(
+                        Image.network(
+                          discount.company.image,
                           height: 200,
                           width: double.infinity,
-                          imageUrl: discount.image ?? "",
                           fit: BoxFit.cover,
-                          errorWidget: (context, url, error) => Container(),
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.local_pizza_rounded),
                         ),
                         ClipRRect(
                           borderRadius: context.bottomCircularRadius,

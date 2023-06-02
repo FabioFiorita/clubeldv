@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clubeldv/components/discount_info_card.dart';
 import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:clubeldv/model/category.dart';
@@ -37,14 +36,12 @@ class DiscountPage extends ConsumerWidget {
                   Column(
                     children: [
                       Stack(alignment: Alignment.topRight, children: [
-                        CachedNetworkImage(
-                          imageUrl: discount.image ?? '',
+                        Image.network(
+                          discount.image ?? '',
                           height: 200,
                           width: double.infinity,
                           fit: BoxFit.cover,
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
+                          errorBuilder: (context, error, stackTrace) =>
                               const Icon(Icons.restaurant_menu_rounded),
                         ),
                         Padding(
@@ -142,14 +139,12 @@ class DiscountPage extends ConsumerWidget {
                     padding: const EdgeInsets.only(top: 168.0, left: 16.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(32.0),
-                      child: CachedNetworkImage(
-                        imageUrl: discount.company.image,
+                      child: Image.network(
+                        discount.company.image,
                         height: 64,
                         width: 64,
                         fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
+                        errorBuilder: (context, error, stackTrace) =>
                             const Icon(Icons.restaurant_menu_rounded),
                       ),
                     ),

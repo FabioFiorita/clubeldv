@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:clubeldv/model/discount.dart';
 import 'package:clubeldv/routes/app_router.dart';
@@ -35,15 +34,13 @@ class SimpleDiscountCard extends StatelessWidget {
           borderRadius: context.circularRadius,
           child: Row(
             children: [
-              CachedNetworkImage(
-                imageUrl: image,
+              Image.network(
+                image,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.local_pizza_rounded,
-                  color: Colors.red,
-                ),
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.local_pizza_rounded),
               ),
               Expanded(
                 child: Padding(
@@ -59,8 +56,8 @@ class SimpleDiscountCard extends StatelessWidget {
                       Text(
                         discount.company.name,
                         style: context.textTheme.titleSmall?.copyWith(
-                              color: context.colorScheme.secondary,
-                            ),
+                          color: context.colorScheme.secondary,
+                        ),
                       ),
                     ],
                   ),
