@@ -35,15 +35,42 @@ void main() {
       container.dispose();
     });
 
-    test('discountByCategory returns filtered discounts', () {
+    test('discountByCategory returns filtered discounts', () async {
+      await container.read(discountsProvider.future);
       final provider = container.read(
-          discountByCategoryProvider(category: mockDiscounts[0].category));
+          discountByCategoryProvider(category: mockDiscounts[1].category));
 
-      provider.whenData((value) {
-        expect(value, isA<AsyncData<List<Discount>>>());
-        expect(value, hasLength(1));
-        expect(value[0].id, mockDiscounts[0].id);
-      });
+      provider.when(
+        data: (data) {
+          expect(data, isA<List<Discount>>());
+          expect(data[0].id, mockDiscounts[1].id);
+        },
+        loading: () {
+          fail('Unexpected loading state');
+        },
+        error: (err, stack) {
+          fail('Unexpected error state');
+        },
+      );
+    });
+
+    test('discount provider returns the discount with the specified ID',
+        () async {
+      await container.read(discountsProvider.future);
+      final provider =
+          container.read(discountProvider(id: mockDiscounts[1].id));
+      provider.when(
+        data: (data) {
+          expect(data, isA<Discount>());
+          expect(data.id, mockDiscounts[1].id);
+        },
+        loading: () {
+          fail('Unexpected loading state');
+        },
+        error: (err, stack) {
+          fail('Unexpected error state');
+        },
+      );
     });
 
     test('Discounts provider returns all discounts', () async {
@@ -57,15 +84,6 @@ void main() {
       await container.read(starredDiscountProvider.future);
       final provider = container.read(starredDiscountProvider);
       expect(provider.value, mockDiscount);
-    });
-
-    test('discount provider returns the discount with the specified ID', () {
-      final provider =
-          container.read(discountProvider(id: mockDiscounts[1].id));
-      provider.whenData((value) {
-        expect(value, isA<Discount>());
-        expect(value.id, mockDiscounts[1].id);
-      });
     });
   });
 
@@ -90,13 +108,33 @@ void main() {
       container.dispose();
     });
 
-    test('discountByCategory should be AsyncError and return empty', () {
+    test('discountByCategory should be AsyncError and return empty', () async {
       final provider = container.read(
           discountByCategoryProvider(category: mockDiscounts[0].category));
       provider.when(
         data: (data) => expect(data, null),
-        error: (err, stack) => expect(err, isA<Exception>()),
         loading: () => expect(provider.value, null),
+        error: (err, stack) {
+          expect(provider.hasError, true);
+          expect(provider.value, isA<AsyncError>());
+          expect(err, isA<Exception>());
+          expect(stack, isA<StackTrace>());
+        },
+      );
+    });
+
+    test('discount provider should be AsyncError and return empty', () {
+      final provider =
+          container.read(discountProvider(id: mockDiscounts[1].id));
+      provider.when(
+        data: (data) => expect(data, null),
+        loading: () => expect(provider.value, null),
+        error: (err, stack) {
+          expect(provider.hasError, true);
+          expect(provider.value, isA<AsyncError>());
+          expect(err, isA<Exception>());
+          expect(stack, isA<StackTrace>());
+        },
       );
     });
 
@@ -104,8 +142,13 @@ void main() {
       final provider = container.read(discountsProvider);
       provider.when(
         data: (data) => expect(data, null),
-        error: (err, stack) => expect(err, isA<Exception>()),
         loading: () => expect(provider.value, null),
+        error: (err, stack) {
+          expect(provider.hasError, true);
+          expect(provider.value, isA<AsyncError>());
+          expect(err, isA<Exception>());
+          expect(stack, isA<StackTrace>());
+        },
       );
     });
 
@@ -113,19 +156,13 @@ void main() {
       final provider = container.read(starredDiscountProvider);
       provider.when(
         data: (data) => expect(data, null),
-        error: (err, stack) => expect(err, isA<Exception>()),
         loading: () => expect(provider.value, null),
-      );
-    });
-
-    test('discount provider should be AsyncError and return empty', () {
-      final provider =
-          container.read(discountProvider(id: mockDiscounts[1].id));
-
-      provider.when(
-        data: (data) => expect(data, null),
-        error: (err, stack) => expect(err, isA<Exception>()),
-        loading: () => expect(provider.value, null),
+        error: (err, stack) {
+          expect(provider.hasError, true);
+          expect(provider.value, isA<AsyncError>());
+          expect(err, isA<Exception>());
+          expect(stack, isA<StackTrace>());
+        },
       );
     });
   });
@@ -171,6 +208,26 @@ void main() {
       verifyNever(mockRepository.getAll());
     });
 
+    test('discount provider should use cached data', () {
+      final discountId = mockDiscounts[1].id;
+
+      verifyNever(mockRepository.getAll());
+
+      // Pre-fill the cache with data
+      container.read(discountProvider(id: discountId));
+
+      verify(mockRepository.getAll()).called(1);
+
+      // Clear any interactions with the repository
+      clearInteractions(mockRepository);
+
+      // Access the provider again
+      container.read(discountProvider(id: discountId));
+
+      // Verify that the repository was not called again
+      verifyNever(mockRepository.getAll());
+    });
+
     test('Discounts provider should use cached data', () async {
       verifyNever(mockRepository.getAll());
 
@@ -204,26 +261,6 @@ void main() {
 
       // Verify that the repository was not called again
       verifyNever(mockRepository.getStarredDiscount());
-    });
-
-    test('discount provider should use cached data', () {
-      final discountId = mockDiscounts[1].id;
-
-      verifyNever(mockRepository.getAll());
-
-      // Pre-fill the cache with data
-      container.read(discountProvider(id: discountId));
-
-      verify(mockRepository.getAll()).called(1);
-
-      // Clear any interactions with the repository
-      clearInteractions(mockRepository);
-
-      // Access the provider again
-      container.read(discountProvider(id: discountId));
-
-      // Verify that the repository was not called again
-      verifyNever(mockRepository.getAll());
     });
   });
 }

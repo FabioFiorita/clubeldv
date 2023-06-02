@@ -11,11 +11,21 @@ AsyncValue<List<Discount>> discountByCategory(DiscountByCategoryRef ref,
   final asyncDiscounts = ref.watch(discountsProvider);
   return asyncDiscounts.when(
     data: (discounts) {
-      final filteredDiscounts = discounts
-          .where((discount) => discount.category == category)
-          .toList();
+      final filteredDiscounts =
+          discounts.where((discount) => discount.category == category).toList();
       return AsyncData(filteredDiscounts);
     },
+    loading: () => const AsyncLoading(),
+    error: (error, stack) => AsyncError(error, stack),
+  );
+}
+
+@riverpod
+AsyncValue<Discount> discount(DiscountRef ref, {required String id}) {
+  final asyncDiscounts = ref.watch(discountsProvider);
+  return asyncDiscounts.when(
+    data: (discounts) =>
+        AsyncData(discounts.firstWhere((discount) => discount.id == id)),
     loading: () => const AsyncLoading(),
     error: (error, stack) => AsyncError(error, stack),
   );
@@ -45,14 +55,4 @@ class StarredDiscount extends _$StarredDiscount {
     final repository = ref.read(discountRepositoryProvider);
     return await repository.getStarredDiscount();
   }
-}
-
-@riverpod
-AsyncValue<Discount> discount(DiscountRef ref, {required String id}) {
-  final asyncDiscounts = ref.watch(discountsProvider);
-  return asyncDiscounts.when(
-    data: (discounts) => AsyncData(discounts.firstWhere((discount) => discount.id == id)),
-    loading: () => const AsyncLoading(),
-    error: (error, stack) => AsyncError(error, stack),
-  );
 }
