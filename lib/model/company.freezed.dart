@@ -21,24 +21,15 @@ Company _$CompanyFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Company {
   String get id => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   int get number => throw _privateConstructorUsedError;
-
   String get address => throw _privateConstructorUsedError;
-
   String get city => throw _privateConstructorUsedError;
-
   String get image => throw _privateConstructorUsedError;
-
   String get instagram => throw _privateConstructorUsedError;
-
   String get openingHours => throw _privateConstructorUsedError;
-
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get createdAt => throw _privateConstructorUsedError;
-
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -50,7 +41,6 @@ mixin _$Company {
 abstract class $CompanyCopyWith<$Res> {
   factory $CompanyCopyWith(Company value, $Res Function(Company) then) =
       _$CompanyCopyWithImpl<$Res, Company>;
-
   @useResult
   $Res call(
       {String id,
@@ -72,7 +62,6 @@ class _$CompanyCopyWithImpl<$Res, $Val extends Company>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -140,7 +129,6 @@ abstract class _$$_CompanyCopyWith<$Res> implements $CompanyCopyWith<$Res> {
   factory _$$_CompanyCopyWith(
           _$_Company value, $Res Function(_$_Company) then) =
       __$$_CompanyCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -311,44 +299,35 @@ abstract class _Company implements Company {
       required final String image,
       required final String instagram,
       required final String openingHours,
-      @JsonKey(fromJson: _sendAtFromJson) required final DateTime createdAt,
       @JsonKey(fromJson: _sendAtFromJson)
-      required final DateTime updatedAt}) = _$_Company;
+          required final DateTime createdAt,
+      @JsonKey(fromJson: _sendAtFromJson)
+          required final DateTime updatedAt}) = _$_Company;
 
   factory _Company.fromJson(Map<String, dynamic> json) = _$_Company.fromJson;
 
   @override
   String get id;
-
   @override
   String get name;
-
   @override
   int get number;
-
   @override
   String get address;
-
   @override
   String get city;
-
   @override
   String get image;
-
   @override
   String get instagram;
-
   @override
   String get openingHours;
-
   @override
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get createdAt;
-
   @override
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get updatedAt;
-
   @override
   @JsonKey(ignore: true)
   _$$_CompanyCopyWith<_$_Company> get copyWith =>

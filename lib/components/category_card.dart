@@ -41,12 +41,14 @@ class CategoryCard extends StatelessWidget {
                     category.icon,
                     color: category.color,
                     size: 30,
+                    key: const Key('categoryIcon'),
                   ),
                   Padding(
                     padding: context.edgeInsetsSmall,
                     child: Text(
                       category.name,
                       style: context.textTheme.titleLarge,
+                      key: const Key('categoryName'),
                     ),
                   ),
                 ],

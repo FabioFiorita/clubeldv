@@ -52,12 +52,14 @@ class SimpleDiscountCard extends StatelessWidget {
                       Text(
                         discount.name,
                         style: context.textTheme.titleLarge,
+                        key: const Key('discountName'),
                       ),
                       Text(
                         discount.company.name,
                         style: context.textTheme.titleSmall?.copyWith(
                           color: context.colorScheme.secondary,
                         ),
+                        key: const Key('discountCompanyName'),
                       ),
                     ],
                   ),

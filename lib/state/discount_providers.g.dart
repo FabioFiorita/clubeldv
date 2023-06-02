@@ -114,7 +114,6 @@ class DiscountByCategoryProvider
 }
 
 String _$discountHash() => r'1e3564f740deb64f6a86dd7b3eb8467d214cec5a';
-
 typedef DiscountRef = AutoDisposeProviderRef<AsyncValue<Discount>>;
 
 /// See also [discount].
@@ -210,7 +209,6 @@ final discountsProvider =
 );
 
 typedef _$Discounts = AutoDisposeAsyncNotifier<List<Discount>>;
-
 String _$starredDiscountHash() => r'ee1cd45e8ef8b2932fd261690d8abb8dcb7c731a';
 
 /// See also [StarredDiscount].
