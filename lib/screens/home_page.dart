@@ -43,7 +43,7 @@ class HomePage extends ConsumerWidget {
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
                       child: Row(
                         children: [
                           Expanded(
@@ -80,7 +80,7 @@ class HomePage extends ConsumerWidget {
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
                       child: Row(
                         children: [
                           Expanded(
