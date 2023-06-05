@@ -4,6 +4,7 @@ import 'package:clubeldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 import '../model/discount.dart';
+import 'loading_component.dart';
 
 class DiscountListTile extends StatelessWidget {
   final Discount discount;
@@ -24,8 +25,12 @@ class DiscountListTile extends StatelessWidget {
           width: 50,
           height: 50,
           fit: BoxFit.cover,
+          loadingBuilder: (context, child, loadingProgress) =>
+          loadingProgress == null
+              ? child
+              : const LoadingComponent(),
           errorBuilder: (context, error, stackTrace) =>
-              const Icon(Icons.restaurant_menu_rounded),
+              Container(),
         ),
       ),
       title: Text(discount.name),

@@ -26,9 +26,9 @@ class StarredDiscountCard extends ConsumerWidget {
                   borderRadius: context.circularRadius,
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.6),
-                      offset: const Offset(4, 4),
-                      blurRadius: 16,
+                      color: context.colorScheme.shadow.withOpacity(0.6),
+                      offset: const Offset(2, 2),
+                      blurRadius: 12,
                     ),
                   ],
                 ),
@@ -41,14 +41,18 @@ class StarredDiscountCard extends ConsumerWidget {
                           height: 200,
                           width: double.infinity,
                           fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) =>
+                              loadingProgress == null
+                                  ? child
+                                  : const LoadingComponent(),
                           errorBuilder: (context, error, stackTrace) =>
-                              const Icon(Icons.local_pizza_rounded),
+                              Container(),
                         ),
                         ClipRRect(
                           borderRadius: context.bottomCircularRadius,
                           child: Container(
                             width: double.infinity,
-                            color: Colors.white,
+                            color: context.onPrimaryColor,
                             child: Padding(
                               padding: context.edgeInsetsSmall,
                               child: Column(
@@ -63,14 +67,14 @@ class StarredDiscountCard extends ConsumerWidget {
                                     style: context.textTheme.titleMedium
                                         ?.copyWith(
                                             color:
-                                                Colors.grey.withOpacity(0.8)),
+                                            context.colorScheme.secondary),
                                   ),
                                   Text(
                                     "Valido até ${discount.validUntil.day}/${discount.validUntil.month}/${discount.validUntil.year}",
                                     style: context.textTheme.titleMedium
                                         ?.copyWith(
                                             color:
-                                                Colors.grey.withOpacity(0.8)),
+                                            context.colorScheme.secondary),
                                   ),
                                 ],
                               ),

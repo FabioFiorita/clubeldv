@@ -7,6 +7,7 @@ import 'package:clubeldv/screens/loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../components/empty_discount_page.dart';
 import '../state/discount_providers.dart';
 import '../utils/categories.dart';
 
@@ -48,27 +49,7 @@ class CategoryDiscountListPage extends ConsumerWidget {
                     );
                   },
                 )
-              : Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Image(
-                        image: AssetImage(
-                          "assets/images/man.png",
-                        ),
-                        height: 350,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: Text(
-                          "Nenhum desconto encontrado",
-                          style: context.textTheme.bodyLarge,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              : const EmptyDiscountPage(title: "Nenhum desconto encontrado",),
         ),
       ),
       loading: () => const LoadingPage(),

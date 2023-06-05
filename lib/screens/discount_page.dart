@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../components/loading_component.dart';
 import '../model/discount_info.dart';
 import '../state/discount_providers.dart';
 
@@ -41,8 +42,12 @@ class DiscountPage extends ConsumerWidget {
                           height: 200,
                           width: double.infinity,
                           fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) =>
+                          loadingProgress == null
+                              ? child
+                              : const LoadingComponent(),
                           errorBuilder: (context, error, stackTrace) =>
-                              const Icon(Icons.restaurant_menu_rounded),
+                              Container(),
                         ),
                         Padding(
                           padding:
@@ -52,7 +57,7 @@ class DiscountPage extends ConsumerWidget {
                               shape: const CircleBorder(),
                               padding: context.edgeInsets,
                               backgroundColor: Colors.grey[200],
-                              foregroundColor: Colors.grey, // <-- Splash color
+                              foregroundColor: Colors.grey,
                             ),
                             onPressed: () => context.router.canPop()
                                 ? context.router.pop()
@@ -75,10 +80,10 @@ class DiscountPage extends ConsumerWidget {
                               padding: const EdgeInsets.only(top: 8.0),
                               child: ListTile(
                                 leading: const Icon(FontAwesomeIcons.instagram),
-                                iconColor: Colors.red,
                                 title:
                                     SelectableText(discount.company.instagram),
-                                textColor: Colors.red,
+                                textColor: context.secondaryColor,
+                                iconColor: context.secondaryColor,
                               ),
                             ),
                             Padding(
@@ -89,18 +94,18 @@ class DiscountPage extends ConsumerWidget {
                                   DiscountInfo(
                                     info: discount.name,
                                     icon: Icons.card_giftcard_rounded,
-                                    iconColor: Colors.red,
+                                    iconColor: context.secondaryColor,
                                   ),
                                   DiscountInfo(
                                     info: discount.description,
                                     icon: Icons.description_rounded,
-                                    iconColor: Colors.red,
+                                    iconColor: context.secondaryColor,
                                   ),
                                   DiscountInfo(
                                     info:
                                         "Válido até ${discount.validUntil.day}/${discount.validUntil.month}/${discount.validUntil.year}",
                                     icon: Icons.calendar_month_rounded,
-                                    iconColor: Colors.red,
+                                    iconColor: context.secondaryColor,
                                   ),
                                 ],
                               ),
@@ -110,23 +115,23 @@ class DiscountPage extends ConsumerWidget {
                                 DiscountInfo(
                                   info: category.name,
                                   icon: Icons.restaurant_menu_rounded,
-                                  iconColor: Colors.red,
+                                  iconColor: context.secondaryColor,
                                 ),
                                 DiscountInfo(
                                   info: discount.company.address,
                                   icon: Icons.location_on_rounded,
-                                  iconColor: Colors.red,
+                                  iconColor: context.secondaryColor,
                                 ),
                                 DiscountInfo(
                                   info:
                                       "(${discount.company.number.toString().substring(0, 2)}) ${discount.company.number.toString().substring(2, 6)}-${discount.company.number.toString().substring(6, 11)}",
                                   icon: Icons.local_phone_rounded,
-                                  iconColor: Colors.red,
+                                  iconColor: context.secondaryColor,
                                 ),
                                 DiscountInfo(
                                   info: discount.company.openingHours,
                                   icon: Icons.access_time_rounded,
-                                  iconColor: Colors.red,
+                                  iconColor: context.secondaryColor,
                                 ),
                               ],
                             )
@@ -144,8 +149,12 @@ class DiscountPage extends ConsumerWidget {
                         height: 64,
                         width: 64,
                         fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) =>
+                        loadingProgress == null
+                            ? child
+                            : const LoadingComponent(),
                         errorBuilder: (context, error, stackTrace) =>
-                            const Icon(Icons.restaurant_menu_rounded),
+                            Container(),
                       ),
                     ),
                   ),

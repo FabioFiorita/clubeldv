@@ -21,11 +21,11 @@ class CategoryCard extends StatelessWidget {
       ),
       child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: context.onPrimaryColor,
             borderRadius: context.circularRadius,
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: Colors.grey.withOpacity(0.6),
+                color: context.colorScheme.shadow.withOpacity(0.6),
                 offset: const Offset(2, 2),
                 blurRadius: 6,
               ),

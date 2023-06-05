@@ -20,6 +20,18 @@ extension CustomCanvasColor on BuildContext {
   Color get canvasColor => Theme.of(this).canvasColor;
 }
 
+extension CustomOnPrimaryColor on BuildContext {
+  Color get onPrimaryColor => Theme.of(this).colorScheme.onPrimary;
+}
+
+extension CustomOnBackgroundColor on BuildContext {
+  Color get onBackgroundColor => Theme.of(this).colorScheme.onBackground;
+}
+
+extension CustomSecondaryColor on BuildContext {
+  Color get secondaryColor => Theme.of(this).colorScheme.secondary;
+}
+
 extension CustomSnackBar on BuildContext {
   void snackBar(String text, Color? color) {
     ScaffoldMessenger.of(this).showSnackBar(SnackBar(

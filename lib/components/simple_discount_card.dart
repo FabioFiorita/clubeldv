@@ -4,6 +4,8 @@ import 'package:clubeldv/model/discount.dart';
 import 'package:clubeldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
+import 'loading_component.dart';
+
 class SimpleDiscountCard extends StatelessWidget {
   final Discount discount;
 
@@ -20,11 +22,11 @@ class SimpleDiscountCard extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.onPrimaryColor,
           borderRadius: context.circularRadius,
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.grey.withOpacity(0.6),
+              color: context.colorScheme.shadow.withOpacity(0.6),
               offset: const Offset(2, 2),
               blurRadius: 8,
             ),
@@ -39,8 +41,12 @@ class SimpleDiscountCard extends StatelessWidget {
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) =>
+                loadingProgress == null
+                    ? child
+                    : const LoadingComponent(),
                 errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.local_pizza_rounded),
+                    Container(),
               ),
               Expanded(
                 child: Padding(
