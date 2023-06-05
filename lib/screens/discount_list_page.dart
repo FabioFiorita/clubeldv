@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:clubeldv/components/empty_discount_page.dart';
 import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:clubeldv/screens/error_page.dart';
 import 'package:clubeldv/screens/loading_page.dart';
@@ -90,7 +91,7 @@ class DiscountListPageState extends ConsumerState<DiscountListPage> {
                     ),
                   ),
                   (_isSearching)
-                      ? SliverList(
+                      ? (filteredDiscounts.isNotEmpty) ? SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
                               return Padding(
@@ -106,8 +107,12 @@ class DiscountListPageState extends ConsumerState<DiscountListPage> {
                             },
                             childCount: filteredDiscounts.length,
                           ),
-                        )
-                      : SliverList(
+                        ) : const SliverToBoxAdapter(
+                    child: EmptyDiscountPage(
+                      title: "Procure descontos por nome ou empresa",
+                    ),
+                  )
+                      : (discounts.isNotEmpty) ?SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
                               return Padding(
@@ -124,7 +129,11 @@ class DiscountListPageState extends ConsumerState<DiscountListPage> {
                             childCount:
                                 (discounts.length > 10) ? 10 : discounts.length,
                           ),
-                        )
+                        ) : const SliverToBoxAdapter(
+                    child: EmptyDiscountPage(
+                      title: "Não há descontos no momento",
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -25,7 +25,7 @@ final List<Category> categories = [
   Category(
     id: 'carnes',
     name: "Carnes",
-    icon:  FontAwesomeIcons.drumstickBite,
+    icon: FontAwesomeIcons.drumstickBite,
     color: Colors.brown,
   ),
   Category(

@@ -15,12 +15,17 @@ class ErrorPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Image(
-              image: AssetImage("assets/images/woman.png",),
+              image: AssetImage(
+                "assets/images/woman.png",
+              ),
               height: 350,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Text("Aconteceu um erro!", style: Theme.of(context).textTheme.bodyLarge,),
+              child: Text(
+                "Aconteceu um erro!",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
             ),
             ElevatedButton(
               onPressed: () {

@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:clubeldv/model/discount.dart';
 import 'package:clubeldv/routes/app_router.dart';
 import 'package:flutter/material.dart';
+
+import 'loading_component.dart';
 
 class SimpleDiscountCard extends StatelessWidget {
   final Discount discount;
@@ -21,11 +22,11 @@ class SimpleDiscountCard extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.onPrimaryColor,
           borderRadius: context.circularRadius,
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.grey.withOpacity(0.6),
+              color: context.colorScheme.shadow.withOpacity(0.6),
               offset: const Offset(2, 2),
               blurRadius: 8,
             ),
@@ -35,15 +36,17 @@ class SimpleDiscountCard extends StatelessWidget {
           borderRadius: context.circularRadius,
           child: Row(
             children: [
-              CachedNetworkImage(
-                imageUrl: image,
+              Image.network(
+                image,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.local_pizza_rounded,
-                  color: Colors.red,
-                ),
+                loadingBuilder: (context, child, loadingProgress) =>
+                loadingProgress == null
+                    ? child
+                    : const LoadingComponent(),
+                errorBuilder: (context, error, stackTrace) =>
+                    Container(),
               ),
               Expanded(
                 child: Padding(
@@ -55,12 +58,14 @@ class SimpleDiscountCard extends StatelessWidget {
                       Text(
                         discount.name,
                         style: context.textTheme.titleLarge,
+                        key: const Key('discountName'),
                       ),
                       Text(
                         discount.company.name,
                         style: context.textTheme.titleSmall?.copyWith(
-                              color: context.colorScheme.secondary,
-                            ),
+                          color: context.colorScheme.secondary,
+                        ),
+                        key: const Key('discountCompanyName'),
                       ),
                     ],
                   ),

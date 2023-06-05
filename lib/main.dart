@@ -4,15 +4,15 @@ import 'package:clubeldv/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'logs/router_logger.dart';
 
 import 'firebase_options.dart';
+import 'logs/router_logger.dart';
 
 void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(ProviderScope(observers: [ProviderLogger()],child: MyApp()));
+  runApp(ProviderScope(observers: [ProviderLogger()], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Clube LDV',
       theme: appTheme,
-      themeMode: ThemeMode.light,
+      darkTheme: darkAppTheme,
+      themeMode: ThemeMode.system,
       routerConfig: _appRouter.config(
         navigatorObservers: () => [RouterLogger()],
       ),

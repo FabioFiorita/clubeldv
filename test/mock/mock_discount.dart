@@ -1,0 +1,75 @@
+import 'package:clubeldv/model/company.dart';
+import 'package:clubeldv/model/discount.dart';
+
+final mockDiscount = Discount(
+  id: "9790f3b0-fbf2-11ed-a0b0-1d3aacfc8e31",
+  name: "Novo Desconto",
+  category: "brasileira",
+  description: "dassdadsadas",
+  company: Company(
+      id: "874d5070-fbca-11ed-a410-297f574d6638",
+      name: "Lugares do Vale LDV",
+      number: 12997387888,
+      address: "Heitor Villa Lobos",
+      city: "São José dos Campos",
+      image: "https://www.logo.png",
+      instagram: "@lugaresdovale",
+      openingHours: "Seg-Sex",
+      createdAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
+      updatedAt: DateTime(2023, 5, 26, 15, 20, 23, 957)),
+  validFrom: DateTime(2023, 5, 26, 15, 20, 6, 168),
+  validUntil: DateTime(2023, 5, 27, 15, 20, 6, 168),
+  image: "https://www.image.com",
+  link: "",
+  createdAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
+  updatedAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
+);
+
+final List<Discount> mockDiscounts = [
+  Discount(
+    id: "9790f3b0-fbf2-11ed-a0b0-1d3aacfc8e31",
+    name: "Novo Desconto",
+    category: "brasileira",
+    description: "dassdadsadas",
+    company: Company(
+        id: "874d5070-fbca-11ed-a410-297f574d6638",
+        name: "Lugares do Vale LDV",
+        number: 12997387888,
+        address: "Heitor Villa Lobos",
+        city: "São José dos Campos",
+        image: "https://www.logo.png",
+        instagram: "@lugaresdovale",
+        openingHours: "Seg-Sex",
+        createdAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
+        updatedAt: DateTime(2023, 5, 26, 15, 20, 23, 957)),
+    validFrom: DateTime(2023, 5, 26, 15, 20, 6, 168),
+    validUntil: DateTime(2023, 5, 27, 15, 20, 6, 168),
+    image: "https://www.image.com",
+    link: "",
+    createdAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
+    updatedAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
+  ),
+  Discount(
+    id: "9790f3b0-fbf2-11ed-a0b0-1d3aacfc8e32",
+    name: "Novo Desconto 2",
+    category: "acai",
+    description: "descricao",
+    company: Company(
+        id: "874d5070-fbca-11ed-a410-297f574d6639",
+        name: "Lugares do Vale LDV 2",
+        number: 12997387887,
+        address: "Heitor Villa Lobos 1",
+        city: "São José dos Campos 2",
+        image: "https://www.logo2.png",
+        instagram: "@lugaresdovale2",
+        openingHours: "Seg-Quin",
+        createdAt: DateTime(2023, 5, 27, 15, 20, 23, 957),
+        updatedAt: DateTime(2023, 5, 27, 15, 20, 23, 957)),
+    validFrom: DateTime(2023, 5, 27, 15, 20, 6, 168),
+    validUntil: DateTime(2023, 5, 27, 15, 20, 6, 168),
+    image: "https://www.image2.com",
+    link: "",
+    createdAt: DateTime(2023, 5, 27, 15, 20, 23, 957),
+    updatedAt: DateTime(2023, 5, 27, 15, 20, 23, 957),
+  )
+];

@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clubeldv/components/loading_component.dart';
 import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:clubeldv/routes/app_router.dart';
@@ -27,9 +26,9 @@ class StarredDiscountCard extends ConsumerWidget {
                   borderRadius: context.circularRadius,
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.6),
-                      offset: const Offset(4, 4),
-                      blurRadius: 16,
+                      color: context.colorScheme.shadow.withOpacity(0.6),
+                      offset: const Offset(2, 2),
+                      blurRadius: 12,
                     ),
                   ],
                 ),
@@ -37,18 +36,23 @@ class StarredDiscountCard extends ConsumerWidget {
                     borderRadius: context.circularRadius,
                     child: Column(
                       children: [
-                        CachedNetworkImage(
+                        Image.network(
+                          discount.company.image,
                           height: 200,
                           width: double.infinity,
-                          imageUrl: discount.image ?? "",
                           fit: BoxFit.cover,
-                          errorWidget: (context, url, error) => Container(),
+                          loadingBuilder: (context, child, loadingProgress) =>
+                              loadingProgress == null
+                                  ? child
+                                  : const LoadingComponent(),
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(),
                         ),
                         ClipRRect(
                           borderRadius: context.bottomCircularRadius,
                           child: Container(
                             width: double.infinity,
-                            color: Colors.white,
+                            color: context.onPrimaryColor,
                             child: Padding(
                               padding: context.edgeInsetsSmall,
                               child: Column(
@@ -63,14 +67,14 @@ class StarredDiscountCard extends ConsumerWidget {
                                     style: context.textTheme.titleMedium
                                         ?.copyWith(
                                             color:
-                                                Colors.grey.withOpacity(0.8)),
+                                            context.colorScheme.secondary),
                                   ),
                                   Text(
                                     "Valido até ${discount.validUntil.day}/${discount.validUntil.month}/${discount.validUntil.year}",
                                     style: context.textTheme.titleMedium
                                         ?.copyWith(
                                             color:
-                                                Colors.grey.withOpacity(0.8)),
+                                            context.colorScheme.secondary),
                                   ),
                                 ],
                               ),

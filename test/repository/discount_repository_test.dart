@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:clubeldv/model/company.dart';
-import 'package:clubeldv/model/discount.dart';
 import 'package:clubeldv/repository/discount_repository.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../mock/mock_discount.dart';
 
 void main() {
   group('DiscountRepository tests', () {
@@ -96,48 +96,30 @@ void main() {
   group('DiscountRepository provider tests', () {
     late DiscountRepository discountRepository;
     late FakeFirebaseFirestore mockFirestore;
+    late ProviderContainer container;
 
     setUp(() {
       mockFirestore = FakeFirebaseFirestore();
       discountRepository = DiscountRepository(mockFirestore);
-    });
-
-    test('discountRepositoryProvider should contain discountRepository', () {
-      final container = ProviderContainer(
+      container = ProviderContainer(
         overrides: [
           discountRepositoryProvider.overrideWithValue(discountRepository),
         ],
       );
+    });
+
+    tearDown(() => container.dispose());
+
+    test('discountRepositoryProvider should contain discountRepository', () {
 
       final discount = container.read(discountRepositoryProvider);
+      final firestore = container.read(discountRepositoryProvider).firestore;
 
       expect(discount, discountRepository);
+      expect(firestore, mockFirestore);
     });
   });
 }
-
-final mockDiscount = Discount(
-    id: "9790f3b0-fbf2-11ed-a0b0-1d3aacfc8e31",
-    name: "Novo Desconto",
-    category: "brasileira",
-    description: "dassdadsadas",
-    company: Company(
-        id: "874d5070-fbca-11ed-a410-297f574d6638",
-        name: "Lugares do Vale LDV",
-        number: 12997387888,
-        address: "Heitor Villa Lobos",
-        city: "São José dos Campos",
-        image: "https://www.logo.png",
-        instagram: "@lugaresdovale",
-        openingHours: "Seg-Sex",
-        createdAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
-        updatedAt: DateTime(2023, 5, 26, 15, 20, 23, 957)),
-    validFrom: DateTime(2023, 5, 26, 15, 20, 6, 168),
-    validUntil: DateTime(2023, 5, 27, 15, 20, 6, 168),
-    image: "https://www.image.com",
-    link: "",
-    createdAt: DateTime(2023, 5, 26, 15, 20, 23, 957),
-    updatedAt: DateTime(2023, 5, 26, 15, 20, 23, 957));
 
 final mockDiscountData = {
   "validFrom": Timestamp(1685125206, 168000000),
