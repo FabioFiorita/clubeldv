@@ -38,7 +38,7 @@ class DiscountPage extends ConsumerWidget {
                     children: [
                       Stack(alignment: Alignment.topRight, children: [
                         Image.network(
-                          discount.image ?? '',
+                          discount.image,
                           height: 200,
                           width: double.infinity,
                           fit: BoxFit.cover,
@@ -124,7 +124,7 @@ class DiscountPage extends ConsumerWidget {
                                 ),
                                 DiscountInfo(
                                   info:
-                                      "(${discount.company.number.toString().substring(0, 2)}) ${discount.company.number.toString().substring(2, 6)}-${discount.company.number.toString().substring(6, 11)}",
+                                      formatNumber(discount.company.number),
                                   icon: Icons.local_phone_rounded,
                                   iconColor: context.secondaryColor,
                                 ),
@@ -165,5 +165,13 @@ class DiscountPage extends ConsumerWidget {
         },
         loading: () => const LoadingPage(),
         error: (error, stack) => const ErrorPage());
+  }
+
+  String formatNumber(int number) {
+    if (number.toString().length == 10) {
+      return "(${number.toString().substring(0, 2)}) ${number.toString().substring(2, 6)}-${number.toString().substring(6, 10)}";
+    } else {
+      return "(${number.toString().substring(0, 2)}) ${number.toString().substring(2, 7)}-${number.toString().substring(7, 11)}";
+    }
   }
 }

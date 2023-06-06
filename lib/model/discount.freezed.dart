@@ -29,7 +29,7 @@ mixin _$Discount {
   DateTime get validFrom => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get validUntil => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
   String? get link => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $DiscountCopyWith<$Res> {
       Company company,
       @JsonKey(fromJson: _sendAtFromJson) DateTime validFrom,
       @JsonKey(fromJson: _sendAtFromJson) DateTime validUntil,
-      String? image,
+      String image,
       String? link,
       @JsonKey(fromJson: _sendAtFromJson) DateTime createdAt,
       @JsonKey(fromJson: _sendAtFromJson) DateTime updatedAt});
@@ -82,7 +82,7 @@ class _$DiscountCopyWithImpl<$Res, $Val extends Discount>
     Object? company = null,
     Object? validFrom = null,
     Object? validUntil = null,
-    Object? image = freezed,
+    Object? image = null,
     Object? link = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -116,10 +116,10 @@ class _$DiscountCopyWithImpl<$Res, $Val extends Discount>
           ? _value.validUntil
           : validUntil // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      image: freezed == image
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ abstract class _$$_DiscountCopyWith<$Res> implements $DiscountCopyWith<$Res> {
       Company company,
       @JsonKey(fromJson: _sendAtFromJson) DateTime validFrom,
       @JsonKey(fromJson: _sendAtFromJson) DateTime validUntil,
-      String? image,
+      String image,
       String? link,
       @JsonKey(fromJson: _sendAtFromJson) DateTime createdAt,
       @JsonKey(fromJson: _sendAtFromJson) DateTime updatedAt});
@@ -186,7 +186,7 @@ class __$$_DiscountCopyWithImpl<$Res>
     Object? company = null,
     Object? validFrom = null,
     Object? validUntil = null,
-    Object? image = freezed,
+    Object? image = null,
     Object? link = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -220,10 +220,10 @@ class __$$_DiscountCopyWithImpl<$Res>
           ? _value.validUntil
           : validUntil // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      image: freezed == image
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       link: freezed == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
@@ -251,7 +251,7 @@ class _$_Discount implements _Discount {
       required this.company,
       @JsonKey(fromJson: _sendAtFromJson) required this.validFrom,
       @JsonKey(fromJson: _sendAtFromJson) required this.validUntil,
-      this.image,
+      required this.image,
       this.link,
       @JsonKey(fromJson: _sendAtFromJson) required this.createdAt,
       @JsonKey(fromJson: _sendAtFromJson) required this.updatedAt});
@@ -276,7 +276,7 @@ class _$_Discount implements _Discount {
   @JsonKey(fromJson: _sendAtFromJson)
   final DateTime validUntil;
   @override
-  final String? image;
+  final String image;
   @override
   final String? link;
   @override
@@ -338,7 +338,7 @@ abstract class _Discount implements Discount {
           required final DateTime validFrom,
       @JsonKey(fromJson: _sendAtFromJson)
           required final DateTime validUntil,
-      final String? image,
+      required final String image,
       final String? link,
       @JsonKey(fromJson: _sendAtFromJson)
           required final DateTime createdAt,
@@ -364,7 +364,7 @@ abstract class _Discount implements Discount {
   @JsonKey(fromJson: _sendAtFromJson)
   DateTime get validUntil;
   @override
-  String? get image;
+  String get image;
   @override
   String? get link;
   @override

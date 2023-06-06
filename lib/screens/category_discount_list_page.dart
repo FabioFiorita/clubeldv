@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clubeldv/components/discount_list_tile.dart';
-import 'package:clubeldv/extensions/context_extensions.dart';
 import 'package:clubeldv/routes/app_router.dart';
 import 'package:clubeldv/screens/error_page.dart';
 import 'package:clubeldv/screens/loading_page.dart';

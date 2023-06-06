@@ -21,7 +21,7 @@ class DiscountListTile extends StatelessWidget {
       leading: ClipRRect(
         borderRadius: context.circularRadius,
         child: Image.network(
-          discount.image ?? '',
+          discount.image,
           width: 50,
           height: 50,
           fit: BoxFit.cover,

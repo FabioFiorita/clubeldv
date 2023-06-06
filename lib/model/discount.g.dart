@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: non_constant_identifier_names
+
 part of 'discount.dart';
 
 // **************************************************************************
@@ -14,7 +16,7 @@ _$_Discount _$$_DiscountFromJson(Map<String, dynamic> json) => _$_Discount(
       company: Company.fromJson(json['company'] as Map<String, dynamic>),
       validFrom: _sendAtFromJson(json['validFrom'] as Timestamp),
       validUntil: _sendAtFromJson(json['validUntil'] as Timestamp),
-      image: json['image'] as String?,
+      image: json['image'] as String,
       link: json['link'] as String?,
       createdAt: _sendAtFromJson(json['createdAt'] as Timestamp),
       updatedAt: _sendAtFromJson(json['updatedAt'] as Timestamp),
