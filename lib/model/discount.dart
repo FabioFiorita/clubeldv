@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:clubeldv/model/company.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,7 +17,7 @@ class Discount with _$Discount {
     required Company company,
     @JsonKey(fromJson: _sendAtFromJson) required DateTime validFrom,
     @JsonKey(fromJson: _sendAtFromJson) required DateTime validUntil,
-    String? image,
+    required String image,
     String? link,
     @JsonKey(fromJson: _sendAtFromJson) required DateTime createdAt,
     @JsonKey(fromJson: _sendAtFromJson) required DateTime updatedAt,
