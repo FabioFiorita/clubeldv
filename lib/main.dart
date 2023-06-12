@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Clube LDV',
       theme: appTheme,
       darkTheme: darkAppTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       routerConfig: _appRouter.config(
         navigatorObservers: () => [RouterLogger()],
       ),

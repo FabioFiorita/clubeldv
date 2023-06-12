@@ -13,7 +13,7 @@ extension CustomColorScheme on BuildContext {
 }
 
 extension CustomPrimaryColor on BuildContext {
-  Color get primaryColor => Theme.of(this).primaryColor;
+  Color get primaryColor => Theme.of(this).colorScheme.primary;
 }
 
 extension CustomCanvasColor on BuildContext {
